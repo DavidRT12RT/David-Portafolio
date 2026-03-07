@@ -88,7 +88,7 @@ function BentoProjectCard({
               />
             </motion.div>
           </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
         </div>
 
         {images.images.length > 1 && (
@@ -327,7 +327,7 @@ export default function Projects() {
           <p className="text-zinc-500 text-lg">{t.projects.subtitle}</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[240px] md:auto-rows-auto md:grid-rows-[300px_280px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-[17.5rem] md:auto-rows-auto md:grid-rows-[23.75rem_22.5rem]">
           <div className="md:col-span-7 h-full">
             <BentoProjectCard
               project={t.projects.items[0]}
