@@ -43,9 +43,13 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <button
             onClick={toggleLanguage}
-            className="px-3 py-1.5 text-xs font-mono rounded-full border border-[#333] text-zinc-400 hover:text-white hover:border-green-500 transition-all duration-300"
+            className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono rounded-full border border-[#333] text-zinc-400 hover:text-white hover:border-green-500 transition-all duration-300"
+            title={language === "en" ? "Cambiar a Español" : "Switch to English"}
           >
-            {language === "en" ? "ES" : "EN"}
+            <span className="text-base leading-none" aria-hidden>
+              {language === "en" ? "🇲🇽" : "🇺🇸"}
+            </span>
+            <span>{language === "en" ? "ES" : "EN"}</span>
           </button>
 
           <a

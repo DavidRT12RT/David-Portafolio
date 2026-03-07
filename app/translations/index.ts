@@ -203,6 +203,7 @@ export const translations = {
     contact: {
       title: "How I",
       titleHighlight: "Work.",
+      emailCta: "Let's talk — send me an email",
       steps: [
         {
           number: "01",
@@ -248,6 +249,7 @@ export const translations = {
       cta1: "If you\u2019re building a product",
       cta2: "and need thoughtful engineering,",
       ctaHighlight: "I\u2019m here.",
+      emailLabel: "Email me",
     },
   },
   es: {
@@ -460,6 +462,7 @@ export const translations = {
     contact: {
       title: "Cómo",
       titleHighlight: "Trabajo.",
+      emailCta: "Hablemos — envíame un correo",
       steps: [
         {
           number: "01",
@@ -505,6 +508,7 @@ export const translations = {
       cta1: "Si est\u00e1s construyendo un producto",
       cta2: "y necesitas ingenier\u00eda de calidad,",
       ctaHighlight: "aqu\u00ed estoy.",
+      emailLabel: "Escríbeme",
     },
   },
 };

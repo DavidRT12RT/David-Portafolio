@@ -52,7 +52,17 @@ export default function Footer() {
 
           <div className="flex items-center gap-5">
             <a
-              href="https://github.com"
+              href="mailto:davidarcosm@hotmail.com"
+              className="text-zinc-600 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm"
+              aria-label={t.footer.emailLabel}
+            >
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span className="hidden sm:inline">davidarcosm@hotmail.com</span>
+            </a>
+            <a
+              href="https://github.com/DavidRT12RT"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-600 hover:text-white transition-colors duration-300"
@@ -63,7 +73,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/david-arcos-melgarejo-722008322/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-600 hover:text-white transition-colors duration-300"
