@@ -18,11 +18,11 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="relative bg-transparent overflow-hidden">
+    <footer className="relative bg-transparent overflow-hidden" role="contentinfo" aria-labelledby="footer-cta">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(34,197,94,0.04)_0%,_transparent_50%)]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-10">
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight text-white mb-10">
+        <h2 id="footer-cta" className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight text-white mb-10">
           {t.footer.cta1}
           <br />
           {t.footer.cta2}{" "}

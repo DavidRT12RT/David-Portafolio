@@ -14,7 +14,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-32 bg-transparent overflow-hidden">
+    <section id="about" className="relative py-32 bg-transparent overflow-hidden" aria-labelledby="about-heading">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(34,197,94,0.05)_0%,_transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(34,197,94,0.03)_0%,_transparent_50%)]" />
 
@@ -24,13 +24,15 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-12">
+          <h2 id="about-heading" className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
             {t.about.title}{" "}
             <span className="text-green-500 italic">
               {t.about.titleHighlight}
             </span>
           </h2>
+          <p className="text-zinc-500 text-lg">{t.about.subtitle}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-16">

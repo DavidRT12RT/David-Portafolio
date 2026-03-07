@@ -307,7 +307,7 @@ export default function Projects() {
   }, [selectedProject]);
 
   return (
-    <section id="projects" className="relative py-24 md:py-32 bg-transparent overflow-hidden">
+    <section id="projects" className="relative py-24 md:py-32 bg-transparent overflow-hidden" aria-labelledby="projects-heading">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,_rgba(34,197,94,0.05)_0%,_transparent_50%)]" />
 
       <div className="relative max-w-7xl mx-auto px-6">
@@ -318,7 +318,7 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
+          <h2 id="projects-heading" className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
             {t.projects.title}{" "}
             <span className="text-green-500 italic">
               {t.projects.titleHighlight}

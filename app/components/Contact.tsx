@@ -259,6 +259,7 @@ export default function Contact() {
     <section
       id="contact"
       className="relative pt-24 md:pt-32 pb-16 bg-transparent overflow-hidden"
+      aria-labelledby="contact-heading"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(34,197,94,0.05)_0%,_transparent_60%)]" />
 
@@ -270,12 +271,13 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
+          <h2 id="contact-heading" className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
             {t.contact.title}{" "}
             <span className="text-green-500 italic">
               {t.contact.titleHighlight}
             </span>
           </h2>
+          <p className="text-zinc-500 text-lg">{t.contact.subtitle}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

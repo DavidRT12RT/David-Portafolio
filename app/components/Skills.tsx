@@ -91,7 +91,7 @@ export default function Skills() {
   ][];
 
   return (
-    <section id="skills" className="relative py-32 bg-transparent">
+    <section id="skills" className="relative py-32 bg-transparent" aria-labelledby="skills-heading">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(34,197,94,0.05)_0%,_transparent_60%)]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -102,7 +102,7 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
+          <h2 id="skills-heading" className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
             {t.skills.title}{" "}
             <span className="text-green-500 italic">
               {t.skills.titleHighlight}
@@ -122,7 +122,7 @@ export default function Skills() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`glass-card p-8 rounded-2xl group ${
-                  key === "ai" ? "md:col-span-2" : ""
+                  key === "ai" || key === "cloud" ? "md:col-span-2" : ""
                 }`}
               >
                 <div className="flex items-center gap-3 mb-6">

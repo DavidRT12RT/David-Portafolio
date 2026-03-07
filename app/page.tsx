@@ -10,6 +10,7 @@ import Skills from "@/app/components/Skills";
 import Projects from "@/app/components/Projects";
 import Contact from "@/app/components/Contact";
 import Footer from "@/app/components/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const GlobalBackground = dynamic(
   () => import("@/app/components/GlobalBackground"),
@@ -19,10 +20,13 @@ const GlobalBackground = dynamic(
 export default function Home() {
   return (
     <LanguageProvider>
+      <SpeedInsights />
       <GlobalBackground />
       <div className="relative z-[1]">
-        <Navbar />
-        <main>
+        <header role="banner">
+          <Navbar />
+        </header>
+        <main id="main-content" role="main" aria-label="Main content">
           <Hero />
           <About />
           <Experience />

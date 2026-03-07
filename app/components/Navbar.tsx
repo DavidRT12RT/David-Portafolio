@@ -21,7 +21,13 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/50 border-b border-white/[0.06]">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/50 border-b border-white/[0.06]" aria-label="Main navigation">
+      <a
+        href="#main-content"
+        className="absolute -top-20 left-6 z-[60] px-4 py-2 bg-green-500 text-black rounded-md transition-[top] duration-200 focus:top-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black"
+      >
+        Skip to main content
+      </a>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="text-lg font-bold tracking-tight text-white">
           David <span className="text-green-500">Arcos</span> Melgarejo

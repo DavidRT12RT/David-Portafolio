@@ -8,7 +8,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-transparent">
+    <section className="relative min-h-screen overflow-hidden bg-transparent" aria-labelledby="hero-title">
       <AIScene />
 
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-[1]" />
@@ -25,7 +25,7 @@ export default function Hero() {
             {t.hero.badge}
           </span>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1] mb-6 text-white">
+          <h1 id="hero-title" className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1] mb-6 text-white">
             {t.hero.title1}
             <br />
             {t.hero.title2}

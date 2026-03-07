@@ -19,6 +19,7 @@ export const translations = {
     about: {
       title: "About",
       titleHighlight: "Me.",
+      subtitle: "Who I am and what drives my work",
       p1: "I'm David Arcos Melgarejo, a Full Stack Developer specialized in building production-grade web and mobile applications with a strong focus on Artificial Intelligence and cloud architecture.",
       p2: "With experience across React, React Native, Node.js, Laravel, NestJS, Firebase, and AWS, I deliver end-to-end solutions that are scalable, secure, and intelligent. My passion lies in designing multi-agent AI architectures using the OpenAI Agents SDK, implementing RAG systems, and building AI-powered tools that solve real-world problems.",
       p3: "I believe technology should be purposeful — every line of code I write is aimed at creating impact.",
@@ -32,6 +33,7 @@ export const translations = {
     experience: {
       title: "Work",
       titleHighlight: "Experience.",
+      subtitle: "Companies and projects I've contributed to",
       present: "Present",
       jobs: [
         {
@@ -203,6 +205,7 @@ export const translations = {
     contact: {
       title: "How I",
       titleHighlight: "Work.",
+      subtitle: "My process from discovery to delivery",
       emailCta: "Let's talk — send me an email",
       steps: [
         {
@@ -272,6 +275,7 @@ export const translations = {
     about: {
       title: "Sobre",
       titleHighlight: "Mí.",
+      subtitle: "Quién soy y qué impulsa mi trabajo",
       p1: "Soy David Arcos Melgarejo, un Desarrollador Full Stack especializado en la construcción de aplicaciones web y móviles de nivel producción con un fuerte enfoque en Inteligencia Artificial y arquitectura en la nube.",
       p2: "Con experiencia en React, React Native, Node.js, Laravel, NestJS, Firebase y AWS, entrego soluciones end-to-end que son escalables, seguras e inteligentes. Mi pasión radica en diseñar arquitecturas de IA multi-agente usando el OpenAI Agents SDK, implementar sistemas RAG y construir herramientas potenciadas por IA que resuelven problemas del mundo real.",
       p3: "Creo que la tecnología debe tener propósito — cada línea de código que escribo está dirigida a crear impacto.",
@@ -285,6 +289,7 @@ export const translations = {
     experience: {
       title: "Experiencia",
       titleHighlight: "Laboral.",
+      subtitle: "Empresas y proyectos en los que he contribuido",
       present: "Presente",
       jobs: [
         {
@@ -462,6 +467,7 @@ export const translations = {
     contact: {
       title: "Cómo",
       titleHighlight: "Trabajo.",
+      subtitle: "Mi proceso desde el descubrimiento hasta la entrega",
       emailCta: "Hablemos — envíame un correo",
       steps: [
         {

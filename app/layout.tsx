@@ -47,7 +47,9 @@ export const metadata: Metadata = {
     "Kapli",
     "Solomon AI",
   ],
-  authors: [{ name: "David Arcos Melgarejo", url: "https://davidarcosmelgarejo.com" }],
+  authors: [
+    { name: "David Arcos Melgarejo", url: "https://davidarcosmelgarejo.com" },
+  ],
   creator: "David Arcos Melgarejo",
   publisher: "David Arcos Melgarejo",
   applicationName: "David Arcos Portfolio",

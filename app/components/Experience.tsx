@@ -7,7 +7,7 @@ export default function Experience() {
   const { t } = useLanguage();
 
   return (
-    <section id="experience" className="relative py-32 bg-transparent">
+    <section id="experience" className="relative py-32 bg-transparent" aria-labelledby="experience-heading">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_left,_rgba(34,197,94,0.04)_0%,_transparent_50%)]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -16,13 +16,15 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-16">
+          <h2 id="experience-heading" className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
             {t.experience.title}{" "}
             <span className="text-green-500 italic">
               {t.experience.titleHighlight}
             </span>
           </h2>
+          <p className="text-zinc-500 text-lg">{t.experience.subtitle}</p>
         </motion.div>
 
         <div className="relative">
@@ -30,7 +32,7 @@ export default function Experience() {
 
           <div className="space-y-12">
             {t.experience.jobs.map((job, index) => (
-              <motion.div
+              <motion.article
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +78,7 @@ export default function Experience() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
