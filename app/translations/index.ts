@@ -42,7 +42,7 @@ export const translations = {
           role: "Full Stack Developer",
           period: "April 2024 — Present",
           description:
-            "Design and development of web and mobile applications using React and React Native, with backend solutions on Firebase and AWS. Leading the integration of AI systems using the OpenAI Agents SDK, designing multi-agent architectures with vector stores, handoff patterns, guardrails, and agent orchestration for production-ready intelligent solutions. AWS services include Cognito, SES, ECR, S3, RDS, and CI/CD with GitHub Actions.",
+            "At ScaleFlow, I led the delivery of three independent AI-driven products. I built AI-powered ERP and CRM platforms delivered as SaaS solutions using Next.js and React, developed end-to-end on Firebase (Firestore, Auth, Cloud Functions, and Storage). I also developed a medical desktop platform with intelligent detection capabilities using Electron and a retrained YOLOv8 model, fully integrated with Firebase services. Additionally, I designed and implemented a custom multi-agent AI framework using the Agents SDK, deployed entirely on AWS, leveraging cloud-native services for orchestration, scalability, and security.",
           tags: [
             "React",
             "React Native",
@@ -57,9 +57,9 @@ export const translations = {
           company: "Kapli",
           location: "Medellín",
           role: "Full Stack Developer",
-          period: "January 2024 — Present",
+          period: "May 2024 — Present",
           description:
-            "Development of Kapli, a production-grade educational platform used by multiple institutions. Built with React, React Native, and Laravel. Created Kappi, an AI-powered educational agent using RAG, vector stores, multimodal capabilities, and agent handoff patterns for intelligent academic automation.",
+            "Full-stack developer behind Kapli’s mobile and web platforms, built with Laravel and React Native. Led all AI development as the sole architect, creating smart features that power the app’s learning experience.",
           tags: [
             "React",
             "React Native",
@@ -76,7 +76,7 @@ export const translations = {
           role: "Full Stack Developer",
           period: "March 2024 — December 2024",
           description:
-            "Full-stack development of GraphQL APIs using NestJS, microservices architecture, and databases like PostgreSQL and MongoDB. Creation of web platforms with ReactJS and mobile platforms with React Native.",
+            "At Grupo KPA, I developed “Bola,” a sports padel management platform, designed to handle memberships, coaches, scheduling, and operational workflows. The system was built using Laravel for the backend and React as a Single Page Application (SPA) for the frontend, and was deployed on AWS, leveraging cloud infrastructure for scalability, reliability, and secure access.",
           tags: [
             "NestJS",
             "GraphQL",
@@ -249,9 +249,9 @@ export const translations = {
     footer: {
       rights: "All rights reserved.",
       built: "Built with Next.js, Three.js & AI",
-      cta1: "If you\u2019re building a product",
+      cta1: "If you’re building a product",
       cta2: "and need thoughtful engineering,",
-      ctaHighlight: "I\u2019m here.",
+      ctaHighlight: "I’m here.",
       emailLabel: "Email me",
     },
   },
@@ -298,7 +298,7 @@ export const translations = {
           role: "Full Stack Developer",
           period: "Abril 2024 — Presente",
           description:
-            "Diseño y desarrollo de aplicaciones web y móviles con React y React Native, con soluciones backend en Firebase y AWS. Liderando la integración de sistemas de IA usando el OpenAI Agents SDK, diseñando arquitecturas multi-agente con vector stores, patrones de handoff, guardrails y orquestación de agentes para soluciones inteligentes listas para producción. Servicios AWS incluyen Cognito, SES, ECR, S3, RDS y CI/CD con GitHub Actions.",
+            "En ScaleFlow, lideré la entrega de tres productos independientes impulsados por IA. Construí plataformas ERP y CRM potenciadas por inteligencia artificial, entregadas como soluciones SaaS utilizando Next.js y React, desarrolladas de extremo a extremo sobre Firebase (Firestore, Auth, Cloud Functions y Storage). También desarrollé una plataforma médica de escritorio con capacidades de detección inteligente utilizando Electron y un modelo YOLOv8 reentrenado, completamente integrado con los servicios de Firebase. Además, diseñé e implementé un framework personalizado de IA multiagente utilizando el Agents SDK, desplegado completamente en AWS, aprovechando servicios nativos de la nube para orquestación, escalabilidad y seguridad.",
           tags: [
             "React",
             "React Native",
@@ -313,9 +313,9 @@ export const translations = {
           company: "Kapli",
           location: "Medellín",
           role: "Full Stack Developer",
-          period: "Enero 2024 — Presente",
+          period: "Mayo 2024 — Presente",
           description:
-            "Desarrollo de Kapli, una plataforma educativa de nivel producción utilizada por múltiples instituciones. Construida con React, React Native y Laravel. Creación de Kappi, un agente educativo potenciado por IA usando RAG, vector stores, capacidades multimodales y patrones de handoff de agentes para automatización académica inteligente.",
+            "Desarrollador Full Stack detrás de las plataformas móvil y web de Kapli, construidas con Laravel y React Native. Lideré todo el desarrollo de IA como arquitecto único, creando funcionalidades inteligentes que impulsan la experiencia de aprendizaje de la aplicación.",
           tags: [
             "React",
             "React Native",
@@ -332,7 +332,7 @@ export const translations = {
           role: "Full Stack Developer",
           period: "Marzo 2024 — Diciembre 2024",
           description:
-            "Desarrollo full-stack de APIs GraphQL usando NestJS, arquitectura de microservicios y bases de datos como PostgreSQL y MongoDB. Creación de plataformas web con ReactJS y plataformas móviles con React Native.",
+            "En Grupo KPA, desarrollé “Bola”, una plataforma de gestión deportiva para pádel, diseñada para administrar membresías, entrenadores, programación de horarios y flujos operativos. El sistema fue construido utilizando Laravel para el backend y React como una Single Page Application (SPA) para el frontend, y fue desplegado en AWS, aprovechando la infraestructura en la nube para garantizar escalabilidad, confiabilidad y acceso seguro.",
           tags: [
             "NestJS",
             "GraphQL",
