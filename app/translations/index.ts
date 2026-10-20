@@ -171,6 +171,20 @@ export const translations = {
         },
       },
     },
+    treasury: {
+      intro:
+        "Athens struck its silver with Athena's owl, and those coins paid for the fleet and the Parthenon. These are mine: each technology in the metal of its trade, with the works where it has already paid its way.",
+      metals: { gold: "gold", silver: "silver", bronze: "bronze", electrum: "electrum" },
+      details: {
+        openai: "Agents SDK",
+        yolo: "Object Detection",
+        laravel: "PHP",
+        amazonwebservices: "Cognito, SES, ECR, S3, RDS",
+        githubactions: "CI/CD",
+      },
+      inWorks: "In the works",
+      also: "Also",
+    },
     projects: {
       title: "Selected",
       titleHighlight: "Projects.",
@@ -202,47 +216,160 @@ export const translations = {
         },
       ],
     },
+    giants: {
+      title: "The fall of",
+      titleHighlight: "the giants.",
+      subtitle: "What happens when a system is built by brute force",
+      intro:
+        "The giants tried to take Olympus by piling mountain upon mountain, with no plan but their strength. Jacob Jordaens painted the moment it all comes down on them. Software knows that fall too, and it nearly always starts the same way: building faster than thinking.",
+      story: [
+        {
+          title: "Mountain upon mountain",
+          text: "To reach the sky they piled up mountains with no foundations. Code goes the same way: patches, shortcuts and dependencies pile up until something gives. So I start with the architecture: every part with one responsibility, clear API contracts and infrastructure designed from day one.",
+          detail: "The giants falling from the sky",
+          practice: "specialised domain agents, each with its own job, handing work to one another",
+          project: 0,
+        },
+        {
+          title: "Brute force",
+          text: "This giant holds his rock up by sheer strength, and that is how many systems are held up: deploying by hand, testing by hand, hoping at every release. It holds for a while, until the weight wins. What repeats, I automate: every change goes through tests and ships through a pipeline.",
+          detail: "The giant lifting the rock",
+          practice: "CI/CD pipelines on AWS and Firebase",
+          project: 2,
+        },
+        {
+          title: "What carries the weight",
+          text: "In the middle, a giant carries the mountain on his back. A system in production carries something like it: users, data and whole institutions that depend on it standing. I design it so the load is shared and it can grow without buckling.",
+          detail: "The giant under the mountain",
+          practice: "a web and mobile platform used by several institutions",
+          project: 1,
+        },
+        {
+          title: "When it falls, it falls on someone",
+          text: "Below lies the one who was crushed. When a system fails, the blow does not land on the code: it lands on a person. In some software getting it wrong is not an option, so I test it, review it and monitor it before and after it reaches production.",
+          detail: "The crushed giant",
+          practice: "real-time polyp detection during colonoscopies",
+          project: 3,
+        },
+        {
+          title: "Order beats force",
+          text: "The gods did not win by being stronger, but by fighting with order. Strength without method ends up under its own mountain; that is why everything I build starts with a plan and ends in production.",
+          detail: "The whole battle",
+          practice: "",
+          project: null,
+        },
+      ],
+      inPractice: "In practice",
+      seeWork: "See the work",
+      seeWorks: "See the works",
+    },
+    oracle: {
+      title: "AI in",
+      titleHighlight: "Production.",
+      subtitle: "The AI I build already answers inside real products",
+      intro:
+        "At Delphi, whoever needed an answer climbed to Apollo's sanctuary, asked their question and waited for the oracle to speak. Camillo Miola painted that moment, and it is how I see artificial intelligence: a system that listens, answers and is accountable for what it says.",
+      story: [
+        {
+          title: "The question",
+          text: "It always starts with someone who needs something: a business with its clients, a student with a doubt, a doctor in front of an image. Before writing a single line of code, I listen for the real question.",
+          detail: "The consultants and their offerings",
+        },
+        {
+          title: "The voice",
+          text: "The Pythia spoke in a trance, wrapped in the vapours rising from the chasm. A language model is much the same: a powerful voice that, without context or limits, can also be wrong.",
+          detail: "The Pythia on her tripod",
+        },
+        {
+          title: "The interpreters",
+          text: "Beside her, the priests listened, wrote down and shaped her words into an answer. That is my work around the model: specialised agents, RAG over the right sources, guardrails and orchestration, so the answer is useful and reliable.",
+          detail: "The priest who writes it down",
+        },
+        {
+          title: "What is written down",
+          text: "Answers were carved in stone so that no one could twist them. In my systems every answer is tested and monitored, before and after it reaches production.",
+          detail: "The inscribed stele",
+        },
+        {
+          title: "Nothing in excess",
+          text: "Apollo's temple bore the words “nothing in excess”. So I use AI where it truly solves something, and today those answers run every day inside real products.",
+          detail: "The whole sanctuary",
+        },
+      ],
+      listLead: "Four capabilities, each one running in a real project.",
+      capabilities: [
+        {
+          name: "Multi-agent orchestration",
+          description:
+            "Specialised domain agents that hand work to one another, with guardrails, vector-store RAG and real-time streamed answers.",
+          project: 0,
+        },
+        {
+          name: "RAG and knowledge agents",
+          description:
+            "Kappi, an educational agent that answers from vector stores, with multimodal capabilities and agent handoffs, used by several institutions.",
+          project: 1,
+        },
+        {
+          name: "Agents in CRM and ERP",
+          description: "Multi-agent architectures inside a management suite, with WhatsApp API integration and lead pipelines.",
+          project: 2,
+        },
+        {
+          name: "Computer vision",
+          description: "Real-time polyp detection with YOLO during colonoscopies, with LLM-based analysis summaries.",
+          project: 3,
+        },
+      ],
+      runningIn: "Running in",
+      seeWork: "See the work",
+    },
     contact: {
       title: "How I",
       titleHighlight: "Work.",
       subtitle: "My process from discovery to delivery",
-      emailCta: "Let's talk — send me an email",
       steps: [
         {
           number: "01",
           title: "Discovery & Planning",
           description:
             "We align on goals, scope, and technical requirements. I map out the architecture and identify the right tools.",
+          detail: "The giants storm Olympus",
         },
         {
           number: "02",
           title: "System Architecture",
           description:
             "Designing scalable systems with clean separation of concerns, API contracts, and cloud infrastructure.",
+          detail: "Minerva, with spear and shield",
         },
         {
           number: "03",
           title: "Rapid Development",
           description:
             "Building with clean code and continuous feedback. Every feature is tested and iterated upon.",
+          detail: "Mercury, the messenger",
         },
         {
           number: "04",
           title: "AI Integration",
           description:
             "Embedding intelligent agents, RAG pipelines, and multi-agent orchestration into your product.",
+          detail: "Jupiter raises the thunderbolt",
         },
         {
           number: "05",
           title: "Quality Assurance",
           description:
             "Rigorous testing, code reviews, and performance optimization before any deployment.",
+          detail: "The giants fall",
         },
         {
           number: "06",
           title: "Ship & Scale",
           description:
             "Production-ready delivery with CI/CD, monitoring, and infrastructure that scales with your business.",
+          detail: "All of Olympus",
         },
       ],
     },
@@ -253,6 +380,115 @@ export const translations = {
       cta2: "and need thoughtful engineering,",
       ctaHighlight: "I’m here.",
       emailLabel: "Email me",
+    },
+    rooms: {
+      about: { greek: "ΛΟΓΟΣ", translit: "lógos", gloss: "reason" },
+      experience: { greek: "ΟΔΥΣΣΕΙΑ", translit: "odýsseia", gloss: "the journey" },
+      skills: { greek: "ΤΕΧΝΗ", translit: "téchnē", gloss: "the craft" },
+      projects: { greek: "ΕΡΓΑ", translit: "érga", gloss: "the works" },
+      method: { greek: "ΜΕΘΟΔΟΣ", translit: "méthodos", gloss: "the way" },
+      oracle: { greek: "ΜΑΝΤΕΙΟΝ", translit: "manteîon", gloss: "the oracle" },
+      giants: { greek: "ΓΙΓΑΝΤΟΜΑΧΙΑ", translit: "gigantomachía", gloss: "the battle of the giants" },
+      contact: { greek: "ΧΑΙΡΕ", translit: "chaîre", gloss: "greetings" },
+    },
+    paintings: {
+      consummation: {
+        artist: "Thomas Cole",
+        title: "The Consummation of Empire",
+        series: "The Course of Empire",
+        date: "1836",
+        collection: "New-York Historical Society",
+      },
+      olympus: {
+        artist: "Francisco Bayeu",
+        title: "Olympus: The Fall of the Giants",
+        series: "Sketch for a ceiling of the Royal Palace, Madrid",
+        date: "1764",
+        collection: "Museo del Prado",
+      },
+      amazons: {
+        artist: "Peter Paul Rubens",
+        title: "The Battle of the Amazons",
+        series: "",
+        date: "c. 1618",
+        collection: "Alte Pinakothek, Munich",
+      },
+      giants: {
+        artist: "Jacob Jordaens",
+        title: "The Fall of the Giants",
+        series: "",
+        date: "1636–1638",
+        collection: "Museo del Prado, Madrid",
+      },
+      oracle: {
+        artist: "Camillo Miola",
+        title: "The Oracle",
+        series: "",
+        date: "1880",
+        collection: "The J. Paul Getty Museum, Los Angeles",
+      },
+      parthenon: {
+        artist: "Frederic Edwin Church",
+        title: "The Parthenon",
+        series: "",
+        date: "1871",
+        collection: "The Metropolitan Museum of Art, New York",
+      },
+    },
+    figures: {
+      credit: "3D scan: SMK, Statens Museum for Kunst · Public domain",
+      athena: {
+        title: "Athena Parthenos (head)",
+        medium: "Plaster cast · 80.5 × 58 × 48 cm",
+        origin: "Greek original, c. 440 BC. Hellenistic copy from Pergamon, 200–150 BC.",
+        inventory: "KAS 2272",
+      },
+      plato: {
+        title: "Plato (427–347 BC)",
+        medium: "Plaster cast · 49 cm",
+        origin: "Greek original, c. 350 BC. Roman copy.",
+        inventory: "KAS 2111",
+      },
+      homer: {
+        title: "Homer",
+        medium: "Plaster cast · 33 × 37 cm",
+        origin: "Hellenistic original, 2nd century BC. Roman copy, formerly in the Farnese collection.",
+        inventory: "KAS 210",
+      },
+      discobolus: {
+        title: "Discobolus",
+        medium: "Painted plaster cast · 168 × 100 × 50.5 cm",
+        origin: "Greek original by Myron, c. 450 BC.",
+        inventory: "KAS 1074",
+      },
+      apollo: {
+        title: "Apollo Belvedere",
+        medium: "Plaster cast · 232 × 103 × 126 cm",
+        origin: "Greek original, c. 330 BC. Roman copy found near Antium in the late 15th century.",
+        inventory: "KAS 353",
+      },
+    },
+    ui: {
+      skip: "Skip to main content",
+      navLabel: "Main navigation",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      menuTitle: "Rooms",
+      languageLabel: "Language",
+      switchLanguage: "Cambiar a Español",
+      viewScreens: "View screenshots",
+      close: "Close",
+      previous: "Previous image",
+      next: "Next image",
+      imageOf: "Image {n} of {total}",
+      previousWork: "Previous work",
+      nextWork: "Next work",
+      workOf: "Work {n} of {total}",
+      signatureGloss: "“David made this”, the way Greek sculptors signed their work.",
+      sculptures: "Sculptures: public-domain 3D scans from SMK, Copenhagen.",
+      paintingCredit:
+        "Paintings: Thomas Cole (1836), Peter Paul Rubens (c. 1618), Francisco Bayeu (1764), Camillo Miola (1880), Frederic Edwin Church (1871) and Jacob Jordaens (1636–1638), public domain.",
+      methodDetail: "Detail",
     },
   },
   es: {
@@ -427,6 +663,20 @@ export const translations = {
         },
       },
     },
+    treasury: {
+      intro:
+        "Atenas acuñaba su plata con la lechuza de Atenea, y esas monedas pagaron la flota y el Partenón. Estas son las mías: cada tecnología en el metal de su oficio, con las obras donde ya ha pagado su parte.",
+      metals: { gold: "oro", silver: "plata", bronze: "bronce", electrum: "electro" },
+      details: {
+        openai: "Agents SDK",
+        yolo: "Detección de Objetos",
+        laravel: "PHP",
+        amazonwebservices: "Cognito, SES, ECR, S3, RDS",
+        githubactions: "CI/CD",
+      },
+      inWorks: "En las obras",
+      also: "También",
+    },
     projects: {
       title: "Proyectos",
       titleHighlight: "Seleccionados.",
@@ -464,47 +714,160 @@ export const translations = {
         },
       ],
     },
+    giants: {
+      title: "La caída de",
+      titleHighlight: "los gigantes.",
+      subtitle: "Lo que pasa cuando un sistema se construye a la fuerza",
+      intro:
+        "Los gigantes quisieron tomar el Olimpo amontonando montaña sobre montaña, sin más plan que su fuerza. Jacob Jordaens pintó el instante en que todo se les viene encima. El software también conoce esa caída, y casi siempre empieza igual: construir más rápido de lo que se piensa.",
+      story: [
+        {
+          title: "Montaña sobre montaña",
+          text: "Para alcanzar el cielo apilaron montañas sin cimientos. En el código pasa igual: parches, atajos y dependencias que se acumulan hasta que algo cede. Por eso empiezo por la arquitectura: cada parte con una sola responsabilidad, contratos de API claros e infraestructura pensada desde el primer día.",
+          detail: "Los gigantes que caen del cielo",
+          practice: "agentes de dominio especializados, cada uno con su tarea, que se pasan el trabajo con handoffs",
+          project: 0,
+        },
+        {
+          title: "La fuerza bruta",
+          text: "Este gigante sostiene su roca a pulso, y así se sostienen muchos sistemas: desplegar a mano, probar a mano, cruzar los dedos en cada versión. Aguanta un tiempo, hasta que el peso gana. Lo que se repite lo automatizo: cada cambio pasa por pruebas y sale por un pipeline.",
+          detail: "El gigante que levanta la roca",
+          practice: "pipelines de CI/CD sobre AWS y Firebase",
+          project: 2,
+        },
+        {
+          title: "Lo que carga el peso",
+          text: "En el centro, un gigante carga la montaña sobre la espalda. Un sistema en producción carga algo parecido: usuarios, datos e instituciones enteras que dependen de que siga en pie. Lo diseño para que el peso se reparta y pueda crecer sin doblarse.",
+          detail: "El gigante bajo la montaña",
+          practice: "una plataforma web y móvil usada por múltiples instituciones",
+          project: 1,
+        },
+        {
+          title: "Cuando cae, cae sobre alguien",
+          text: "Abajo queda el que fue aplastado. Cuando un sistema falla, el golpe no lo recibe el código: lo recibe una persona. Hay software donde equivocarse no es opción, así que lo pruebo, lo reviso y lo monitoreo antes y después de llegar a producción.",
+          detail: "El gigante aplastado",
+          practice: "detección de pólipos en tiempo real durante colonoscopías",
+          project: 3,
+        },
+        {
+          title: "El orden vence a la fuerza",
+          text: "Los dioses no ganaron por ser más fuertes, sino por pelear con orden. La fuerza sin método acaba bajo su propia montaña; por eso todo lo que construyo empieza con un plan y termina en producción.",
+          detail: "La batalla entera",
+          practice: "",
+          project: null,
+        },
+      ],
+      inPractice: "En la práctica",
+      seeWork: "Ver la obra",
+      seeWorks: "Ver las obras",
+    },
+    oracle: {
+      title: "IA en",
+      titleHighlight: "Producción.",
+      subtitle: "La IA que construyo ya responde dentro de productos reales",
+      intro:
+        "En Delfos, quien necesitaba una respuesta subía al santuario de Apolo, hacía su pregunta y esperaba a que el oráculo hablara. Camillo Miola pintó ese momento, y así entiendo la inteligencia artificial: un sistema que escucha, responde y rinde cuentas de lo que dice.",
+      story: [
+        {
+          title: "La pregunta",
+          text: "Todo empieza con alguien que necesita algo: un negocio con sus clientes, un alumno con una duda, un médico frente a una imagen. Antes de escribir una sola línea de código, escucho la pregunta de verdad.",
+          detail: "Los consultantes y sus ofrendas",
+        },
+        {
+          title: "La voz",
+          text: "La pitia hablaba en trance, envuelta en los vapores que subían de la grieta. Un modelo de lenguaje se le parece: una voz poderosa que, sin contexto ni límites, también puede equivocarse.",
+          detail: "La pitia sobre el trípode",
+        },
+        {
+          title: "Los intérpretes",
+          text: "A su lado, los sacerdotes escuchaban, anotaban y daban forma de respuesta a sus palabras. Ese es mi trabajo alrededor del modelo: agentes especializados, RAG con las fuentes correctas, guardrails y orquestación, para que la respuesta sea útil y confiable.",
+          detail: "El sacerdote que la anota",
+        },
+        {
+          title: "Lo que queda escrito",
+          text: "Las respuestas se grababan en piedra para que nadie pudiera torcerlas. En mis sistemas cada respuesta se prueba y se monitorea, antes y después de llegar a producción.",
+          detail: "La estela grabada",
+        },
+        {
+          title: "Nada en exceso",
+          text: "En el templo de Apolo se leía «nada en exceso». Por eso uso la IA donde de verdad resuelve algo, y hoy esas respuestas funcionan todos los días dentro de productos reales.",
+          detail: "El santuario entero",
+        },
+      ],
+      listLead: "Cuatro capacidades, cada una funcionando en un proyecto real.",
+      capabilities: [
+        {
+          name: "Orquestación multi-agente",
+          description:
+            "Agentes de dominio especializados que se pasan el trabajo con handoffs, con guardrails, RAG con vector stores y respuestas en streaming en tiempo real.",
+          project: 0,
+        },
+        {
+          name: "RAG y agentes de conocimiento",
+          description:
+            "Kappi, un agente educativo que responde desde vector stores, con capacidades multimodales y handoffs, usado por múltiples instituciones.",
+          project: 1,
+        },
+        {
+          name: "Agentes en CRM y ERP",
+          description: "Arquitecturas multi-agente dentro de una suite de gestión, con integración de API WhatsApp y pipelines de leads.",
+          project: 2,
+        },
+        {
+          name: "Visión por computadora",
+          description: "Detección de pólipos en tiempo real con YOLO durante colonoscopías, con resúmenes de análisis basados en LLM.",
+          project: 3,
+        },
+      ],
+      runningIn: "En producción en",
+      seeWork: "Ver la obra",
+    },
     contact: {
       title: "Cómo",
       titleHighlight: "Trabajo.",
       subtitle: "Mi proceso desde el descubrimiento hasta la entrega",
-      emailCta: "Hablemos — envíame un correo",
       steps: [
         {
           number: "01",
           title: "Descubrimiento & Planeación",
           description:
             "Alineamos objetivos, alcance y requisitos técnicos. Mapeo la arquitectura e identifico las herramientas correctas.",
+          detail: "Los gigantes asaltan el Olimpo",
         },
         {
           number: "02",
           title: "Arquitectura del Sistema",
           description:
             "Diseño de sistemas escalables con separación limpia de responsabilidades, contratos de API e infraestructura cloud.",
+          detail: "Minerva, con lanza y escudo",
         },
         {
           number: "03",
           title: "Desarrollo Ágil",
           description:
             "Construcción con código limpio y retroalimentación continua. Cada feature es probada e iterada.",
+          detail: "Mercurio, el mensajero",
         },
         {
           number: "04",
           title: "Integración de IA",
           description:
             "Incorporando agentes inteligentes, pipelines RAG y orquestación multi-agente en tu producto.",
+          detail: "Júpiter alza el rayo",
         },
         {
           number: "05",
           title: "Aseguramiento de Calidad",
           description:
             "Testing riguroso, revisiones de código y optimización de rendimiento antes de cada despliegue.",
+          detail: "Los gigantes caen",
         },
         {
           number: "06",
           title: "Lanzar & Escalar",
           description:
             "Entrega lista para producción con CI/CD, monitoreo e infraestructura que escala con tu negocio.",
+          detail: "El Olimpo entero",
         },
       ],
     },
@@ -515,6 +878,115 @@ export const translations = {
       cta2: "y necesitas ingenier\u00eda de calidad,",
       ctaHighlight: "aqu\u00ed estoy.",
       emailLabel: "Escríbeme",
+    },
+    rooms: {
+      about: { greek: "ΛΟΓΟΣ", translit: "lógos", gloss: "la razón" },
+      experience: { greek: "ΟΔΥΣΣΕΙΑ", translit: "odýsseia", gloss: "el viaje" },
+      skills: { greek: "ΤΕΧΝΗ", translit: "téchnē", gloss: "el oficio" },
+      projects: { greek: "ΕΡΓΑ", translit: "érga", gloss: "las obras" },
+      method: { greek: "ΜΕΘΟΔΟΣ", translit: "méthodos", gloss: "el camino" },
+      oracle: { greek: "ΜΑΝΤΕΙΟΝ", translit: "manteîon", gloss: "el oráculo" },
+      giants: { greek: "ΓΙΓΑΝΤΟΜΑΧΙΑ", translit: "gigantomachía", gloss: "la batalla de los gigantes" },
+      contact: { greek: "ΧΑΙΡΕ", translit: "chaîre", gloss: "un saludo" },
+    },
+    paintings: {
+      consummation: {
+        artist: "Thomas Cole",
+        title: "La consumación del imperio",
+        series: "El curso del imperio",
+        date: "1836",
+        collection: "New-York Historical Society",
+      },
+      olympus: {
+        artist: "Francisco Bayeu",
+        title: "El Olimpo: batalla con los gigantes",
+        series: "Boceto para un techo del Palacio Real de Madrid",
+        date: "1764",
+        collection: "Museo del Prado",
+      },
+      amazons: {
+        artist: "Peter Paul Rubens",
+        title: "La batalla de las amazonas",
+        series: "",
+        date: "c. 1618",
+        collection: "Alte Pinakothek, Múnich",
+      },
+      giants: {
+        artist: "Jacob Jordaens",
+        title: "La caída de los gigantes",
+        series: "",
+        date: "1636–1638",
+        collection: "Museo del Prado, Madrid",
+      },
+      oracle: {
+        artist: "Camillo Miola",
+        title: "El oráculo",
+        series: "",
+        date: "1880",
+        collection: "The J. Paul Getty Museum, Los Ángeles",
+      },
+      parthenon: {
+        artist: "Frederic Edwin Church",
+        title: "El Partenón",
+        series: "",
+        date: "1871",
+        collection: "The Metropolitan Museum of Art, Nueva York",
+      },
+    },
+    figures: {
+      credit: "Escaneo 3D: SMK, Statens Museum for Kunst · Dominio público",
+      athena: {
+        title: "Atenea Partenos (cabeza)",
+        medium: "Vaciado en yeso · 80,5 × 58 × 48 cm",
+        origin: "Original griego, c. 440 a. C. Copia helenística de Pérgamo, 200–150 a. C.",
+        inventory: "KAS 2272",
+      },
+      plato: {
+        title: "Platón (427–347 a. C.)",
+        medium: "Vaciado en yeso · 49 cm",
+        origin: "Original griego, c. 350 a. C. Copia romana.",
+        inventory: "KAS 2111",
+      },
+      homer: {
+        title: "Homero",
+        medium: "Vaciado en yeso · 33 × 37 cm",
+        origin: "Original helenístico, s. II a. C. Copia romana, antigua colección Farnese.",
+        inventory: "KAS 210",
+      },
+      discobolus: {
+        title: "Discóbolo",
+        medium: "Vaciado en yeso pintado · 168 × 100 × 50,5 cm",
+        origin: "Original griego de Mirón, c. 450 a. C.",
+        inventory: "KAS 1074",
+      },
+      apollo: {
+        title: "Apolo del Belvedere",
+        medium: "Vaciado en yeso · 232 × 103 × 126 cm",
+        origin: "Original griego, c. 330 a. C. Copia romana hallada cerca de Antium a finales del s. XV.",
+        inventory: "KAS 353",
+      },
+    },
+    ui: {
+      skip: "Saltar al contenido",
+      navLabel: "Navegación principal",
+      openMenu: "Abrir menú",
+      closeMenu: "Cerrar menú",
+      menuTitle: "Salas",
+      languageLabel: "Idioma",
+      switchLanguage: "Switch to English",
+      viewScreens: "Ver capturas",
+      close: "Cerrar",
+      previous: "Imagen anterior",
+      next: "Imagen siguiente",
+      imageOf: "Imagen {n} de {total}",
+      previousWork: "Obra anterior",
+      nextWork: "Obra siguiente",
+      workOf: "Obra {n} de {total}",
+      signatureGloss: "«David lo hizo», como firmaban sus obras los escultores griegos.",
+      sculptures: "Esculturas: escaneos 3D de dominio público del SMK, Copenhague.",
+      paintingCredit:
+        "Pinturas: Thomas Cole (1836), Peter Paul Rubens (c. 1618), Francisco Bayeu (1764), Camillo Miola (1880), Frederic Edwin Church (1871) y Jacob Jordaens (1636–1638), dominio público.",
+      methodDetail: "Detalle",
     },
   },
 };

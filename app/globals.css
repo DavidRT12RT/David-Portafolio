@@ -1,125 +1,498 @@
 @import "tailwindcss";
 
+/*
+ * The city in Thomas Cole's afternoon light (The Consummation of Empire, 1836): a hazy sky the rooms
+ * stand in, sunlit marble, gilding and the umber of the deepest shade. Light and haze are the only
+ * gradients.
+ */
+@theme {
+  --color-ground: #ebe5dd;
+  --color-ground-lit: #f3eee7;
+  --color-stone: #d3c7b8;
+  --color-stone-deep: #b9aa97;
+  --color-ink: #24170f;
+  --color-ink-soft: #5a4535;
+  --color-ink-mute: #76624f;
+  --color-gold: #b4843f;
+  --color-gold-deep: #85581f;
+  --color-gold-light: #d9b06a;
+  /* gilding deep enough for small type over a painting's sky */
+  --color-gold-ink: #62421a;
+  --color-sienna: #9c4a24;
+  --color-shade: #21150e;
+  --color-shade-lit: #2d1f15;
+  --color-shade-line: #4a3828;
+  --color-marble: #f7f2ea;
+  --color-marble-dim: #cfc1ae;
+  --color-marble-mute: #a59482;
+
+  /* shadcn-style aliases used by the registry components */
+  --color-background: #ebe5dd;
+  --color-foreground: #24170f;
+  --color-muted: #f3eee7;
+  --color-muted-foreground: #5a4535;
+  --color-accent: #d3c7b8;
+  --color-border: #d3c7b8;
+
+  --font-sans: var(--font-commissioner), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), "Cormorant SC", serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tones follow the ground a room stands on: umber on the sunlit sky, marble in the shaded portico. */
+@theme inline {
+  --color-tone: var(--tone-strong);
+  --color-tone-soft: var(--tone-soft);
+  --color-tone-mute: var(--tone-mute);
+  --color-tone-line: var(--tone-line);
+  --color-tone-accent: var(--tone-accent);
+  --color-tone-ground: var(--tone-ground);
+}
+
+:root {
+  --tone-strong: var(--color-ink);
+  --tone-soft: var(--color-ink-soft);
+  --tone-mute: var(--color-ink-mute);
+  --tone-line: var(--color-stone);
+  --tone-accent: var(--color-gold-deep);
+  --tone-ground: var(--color-ground);
+
+  /* tokens read by the Arc animated counter module */
+  --foreground: var(--tone-strong);
+  --text-muted: var(--tone-soft);
+  --font-display: var(--font-commissioner), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-commissioner), ui-sans-serif, system-ui, sans-serif;
+  --text-3xl: 1.875rem;
+  --text-xs: 0.75rem;
+  --tracking-display: -0.01em;
+  --tracking-body: 0;
+  --leading-body: 1.5;
+  --space-2: 0.5rem;
+
+  /* raised by the room director as the sun reaches each room */
+  --room-light: 1;
+}
+
+.on-shade {
+  --tone-strong: var(--color-marble);
+  --tone-soft: var(--color-marble-dim);
+  --tone-mute: var(--color-marble-mute);
+  --tone-line: var(--color-shade-line);
+  --tone-accent: var(--color-gold-light);
+  --tone-ground: var(--color-shade);
+  color: var(--tone-strong);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: var(--color-ground);
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
   }
 
+  /* html paints the sky; body stays transparent so the portico's shade can sit beneath the gallery canvas. */
   body {
-    background: #000000;
-    color: #ededed;
+    color: var(--tone-strong);
+    font-family: var(--font-sans);
+    font-variation-settings: "FLAR" 0, "VOLM" 0;
     overflow-x: hidden;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: #22c55e;
-    color: #000;
+    background: var(--color-gold-light);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--tone-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-stone-deep) var(--color-ground);
+    caret-color: var(--color-gold-deep);
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
+    height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #000;
+    background: var(--color-ground);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 3px;
+    background: var(--color-stone-deep);
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #22c55e;
+    background: var(--color-gold);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
 @layer components {
-  .glass-card {
+  /* A room's signage: the Greek name inscribed and gilded, the local name beneath it. */
+  .room-sign {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+  }
+
+  .room-sign__greek {
+    /* As large as the room allows, but never wider than a phone: long names shrink to fit. */
+    font-size: min(clamp(3.25rem, 7.4vw, 6rem), calc((100vw - 2.5rem) * 1.36 / var(--glyphs, 6)));
+    line-height: 0.92;
+    letter-spacing: 0.04em;
+    font-weight: 330;
+    font-variation-settings: "FLAR" 100, "VOLM" 0;
+    color: color-mix(in oklab, var(--tone-accent) calc(45% + var(--room-light) * 55%), var(--tone-ground));
+  }
+
+  .room-sign__local {
+    font-size: clamp(1.5rem, 2.3vw, 2.125rem);
+    line-height: 1.1;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--tone-soft);
+  }
+
+  .room-sign__local strong {
+    font-weight: 500;
+    color: var(--tone-strong);
+  }
+
+  .room-sign__note {
+    margin-top: 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--tone-mute);
+  }
+
+  /* Museum label: the component language of every exhibit, a slip of sunlit marble. */
+  .cartela {
+    background: var(--color-marble);
+    color: var(--color-ink);
+    border: 1px solid color-mix(in oklab, var(--color-stone-deep) 60%, transparent);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.7) inset,
+      0 18px 36px -22px rgba(60, 36, 16, 0.45),
+      0 2px 6px rgba(60, 36, 16, 0.12);
+  }
+
+  .on-shade .cartela {
+    border-color: transparent;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.5) inset,
+      0 18px 40px -18px rgba(0, 0, 0, 0.7),
+      0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .cartela__inv {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-gold-deep);
+  }
+
+  /* Text that comes out of the haze as the sun reaches its room; full strength by default. */
+  .lit {
+    color: color-mix(in oklab, var(--tone-strong) calc(55% + var(--room-light) * 45%), var(--tone-ground));
+  }
+
+  .lit-dim {
+    color: color-mix(in oklab, var(--tone-soft) calc(55% + var(--room-light) * 45%), var(--tone-ground));
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 2.875rem;
+    padding: 0 1.35rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition:
+      background-color 0.35s var(--ease-out-expo),
+      color 0.35s var(--ease-out-expo),
+      border-color 0.35s var(--ease-out-expo),
+      transform 0.35s var(--ease-out-expo);
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  /* The room's strongest tone as a block: umber on the sky, marble in the shade. */
+  .btn--solid {
+    background: var(--tone-strong);
+    color: var(--tone-ground);
+  }
+
+  .btn--solid:hover {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  .btn--outline {
+    border: 1px solid color-mix(in oklab, var(--tone-strong) 38%, transparent);
+    color: var(--tone-strong);
+  }
+
+  .btn--outline:hover {
+    border-color: var(--tone-accent);
+    color: var(--tone-accent);
+  }
+
+  /* Always umber, for marble labels in either light. */
+  .btn--ink {
+    background: var(--color-ink);
+    color: var(--color-marble);
+  }
+
+  .btn--ink:hover {
+    background: var(--color-gold-deep);
+  }
+
+  .hairline {
+    border-color: var(--tone-line);
+  }
+
+  /* Transliterations lean on the face's own slant axis rather than a synthesized italic. */
+  .translit {
+    font-style: normal;
+    font-variation-settings: "slnt" -10, "FLAR" 0;
+  }
+}
+
+/* On phones the figure stands above its room; the room's text slides over it on the ground's own colour,
+   feathered at both ends so the next figure rising from below never meets a hard edge. */
+@media (max-width: 767.98px) {
+  .room-curtain {
     position: relative;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.06) 0%,
-        rgba(255, 255, 255, 0.02) 40%,
-        rgba(0, 0, 0, 0.1) 100%
-      );
-    backdrop-filter: blur(20px) saturate(130%);
-    -webkit-backdrop-filter: blur(20px) saturate(130%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top-color: rgba(255, 255, 255, 0.15);
-    box-shadow:
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-      inset 0 -1px 0 0 rgba(0, 0, 0, 0.2),
-      0 4px 32px 0 rgba(0, 0, 0, 0.4),
-      0 1px 3px 0 rgba(0, 0, 0, 0.3);
-    transition: border-color 0.5s, box-shadow 0.5s, background 0.5s;
+    background: var(--tone-ground);
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 5rem, #000 calc(100% - 4rem), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 5rem, #000 calc(100% - 4rem), transparent 100%);
+  }
+}
+
+/* The first room: Cole's painting, the name set in its sky. */
+.hero-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(3.1rem, 6.4vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  /* A lit lower edge and a soft cast shadow: the letters stand a little in front of the sky. */
+  text-shadow:
+    0 1px 0 rgba(255, 248, 236, 0.45),
+    0 14px 34px rgba(60, 36, 16, 0.2);
+}
+
+/* Sunlight catching the inscription: the same letters again, clear but for a gilded glint that
+   follows the light across them. */
+.hero-name__glint {
+  background-image: radial-gradient(
+    ellipse 30% 95% at var(--glint-x, 30%) var(--glint-y, 40%),
+    var(--color-gold-light) 0%,
+    color-mix(in oklab, var(--color-gold) 70%, transparent) 34%,
+    transparent 68%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+@media (max-width: 767.98px) {
+  .hero-name {
+    font-size: 12.6vw;
+  }
+}
+
+/* The view out of the works' portico: Church's Parthenon beneath the gallery canvas, held still for the
+   stage and feathered into the sky just outside it. */
+.portico-edge--top {
+  background: linear-gradient(to bottom, var(--color-ground), transparent);
+}
+
+.portico-edge--bottom {
+  background: linear-gradient(to top, var(--color-ground), transparent);
+}
+
+/* Where the room's sign stands on arrival: the shade of the portico's corner, over the bright temple. */
+.portico-sign-shade {
+  background: radial-gradient(ellipse 54% 52% at 14% 24%, rgba(33, 21, 14, 0.82), rgba(33, 21, 14, 0) 100%);
+}
+
+@media (max-width: 767.98px) {
+  .portico-sign-shade {
+    background: linear-gradient(to bottom, rgba(33, 21, 14, 0.82) 0%, rgba(33, 21, 14, 0.4) 26%, rgba(33, 21, 14, 0) 40%);
+  }
+}
+
+/* The portico's roof and floor in shade, framing the bright view between the columns. */
+.portico-frame {
+  background:
+    linear-gradient(to bottom, rgba(33, 21, 14, 0.88) 0%, rgba(33, 21, 14, 0.5) 20%, rgba(33, 21, 14, 0) 42%),
+    linear-gradient(to top, rgba(33, 21, 14, 0.82) 0%, rgba(33, 21, 14, 0.38) 16%, rgba(33, 21, 14, 0) 32%);
+}
+
+/* ΘΗΣΑΥΡΟΣ: out of the sunlit rooms into the treasury's shade, and back into the light below it. */
+.treasury-ground {
+  background: linear-gradient(
+    to bottom in oklab,
+    var(--color-ground) 0,
+    color-mix(in oklab, var(--color-ground) 62%, var(--color-shade)) 7vh,
+    color-mix(in oklab, var(--color-ground) 22%, var(--color-shade)) 15vh,
+    var(--color-shade) 24vh,
+    var(--color-shade) calc(100% - 22vh),
+    color-mix(in oklab, var(--color-ground) 22%, var(--color-shade)) calc(100% - 13vh),
+    color-mix(in oklab, var(--color-ground) 62%, var(--color-shade)) calc(100% - 6vh),
+    var(--color-ground) 100%
+  );
+}
+
+/* Each tray's metal, as the flat coins show it before (or without) the struck ones. */
+.metal-gold {
+  --metal: #c99a4e;
+  --metal-deep: #6f4c1e;
+}
+
+.metal-silver {
+  --metal: #b4b1ab;
+  --metal-deep: #55524f;
+}
+
+.metal-bronze {
+  --metal: #a8714a;
+  --metal-deep: #4a3e2b;
+}
+
+.metal-electrum {
+  --metal: #c4ad7c;
+  --metal-deep: #5f5338;
+}
+
+/* A well cut into the tray, a little wider than the coin resting in it. */
+.coin-well {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  container-type: inline-size;
+}
+
+.coin-well::before {
+  content: "";
+  position: absolute;
+  inset: -7%;
+  border-radius: inherit;
+  background: #160d08;
+  box-shadow:
+    inset 0 0.25rem 0.6rem rgba(0, 0, 0, 0.65),
+    inset 0 -1px 0 rgba(255, 232, 204, 0.08);
+}
+
+/* The coin drawn flat in its metal, until the struck coin lies over it. */
+.coin-flat {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  background: var(--metal);
+  color: var(--metal-deep);
+  box-shadow:
+    inset 0 0 0 4cqi color-mix(in oklab, var(--metal) 78%, #fff),
+    inset 0 0 0 5.5cqi color-mix(in oklab, var(--metal) 62%, #000);
+  font-family: var(--font-serif);
+  font-size: 21cqi;
+  line-height: 1;
+  transition: opacity 0.6s var(--ease-out-expo);
+}
+
+[data-struck] > .coin-flat {
+  opacity: 0;
+}
+
+/* Without WebGL each room shows SMK's photograph of its cast, framed like a print in the gallery. */
+.figure-fallback {
+  display: none;
+}
+
+.no-webgl .figure-fallback {
+  display: block;
+  position: absolute;
+  top: 9svh;
+  z-index: 0;
+  width: auto;
+  height: 46svh;
+  object-fit: contain;
+  border: 1px solid var(--color-stone-deep);
+  box-shadow: 0 24px 50px -30px rgba(60, 36, 16, 0.6);
+  pointer-events: none;
+}
+
+.no-webgl .figure-fallback--left,
+.no-webgl .figure-fallback--right,
+.no-webgl .figure-fallback--center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+  .no-webgl .figure-fallback {
+    top: 16vh;
+    height: 64vh;
   }
 
-  .glass-card:hover {
-    border-color: rgba(34, 197, 94, 0.2);
-    border-top-color: rgba(255, 255, 255, 0.2);
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.08) 0%,
-        rgba(255, 255, 255, 0.03) 40%,
-        rgba(0, 0, 0, 0.08) 100%
-      );
-    box-shadow:
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.14),
-      inset 0 -1px 0 0 rgba(0, 0, 0, 0.15),
-      0 8px 40px 0 rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(34, 197, 94, 0.08);
+  .no-webgl .figure-fallback--left {
+    left: 4vw;
+    transform: none;
   }
 
-  .bento-card {
-    position: relative;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(12px) saturate(120%);
-    -webkit-backdrop-filter: blur(12px) saturate(120%);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow:
-      0 4px 24px 0 rgba(0, 0, 0, 0.4),
-      0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  .no-webgl .figure-fallback--right {
+    left: auto;
+    right: 4vw;
+    transform: none;
   }
+}
 
-  .bento-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      160deg,
-      rgba(34, 197, 94, 0) 0%,
-      rgba(34, 197, 94, 0) 40%,
-      rgba(34, 197, 94, 0) 100%
-    );
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    -webkit-mask-composite: xor;
-    pointer-events: none;
-    transition: background 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    z-index: 30;
-  }
+/* A modal exhibit keeps the gallery still behind it. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
 
-  .bento-card:hover {
-    border-color: rgba(34, 197, 94, 0.15);
-    box-shadow:
-      0 8px 40px 0 rgba(0, 0, 0, 0.5),
-      0 0 60px -12px rgba(34, 197, 94, 0.15),
-      0 0 0 1px rgba(34, 197, 94, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .bento-card:hover::before {
-    background: linear-gradient(
-      160deg,
-      rgba(34, 197, 94, 0.4) 0%,
-      rgba(34, 197, 94, 0.1) 40%,
-      rgba(34, 197, 94, 0) 100%
-    );
-  }
+/* Without JavaScript nothing waits for an animation to appear. */
+.no-js [data-reveal],
+.no-js [data-reveal] * {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
 }

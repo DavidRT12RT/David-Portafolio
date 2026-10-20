@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin: relative depth (disparity) of Frederic Edwin Church's The Parthenon (1871, The Metropolitan Museum of Art, CC0 via Wikimedia Commons), estimated locally on 2026-10-19 with Depth Anything V2 Large at 784 and 1036 px, fused, guided-filter upsampled to 2048 px on the painting, near regions dilated; 8-bit, white = near. Drives the portico view's parallax and relighting; WebP lossless.",
+  "createdAt": "2026-10-20T05:56:23.954Z"
+}

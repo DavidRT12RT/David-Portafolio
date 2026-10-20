@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin: derived 2026-10-20 from Thomas Cole, The Consummation of Empire (1836, New-York Historical Society), public domain via Wikimedia Commons (7784x5277), downloaded 2026-10-19. Cole's seven painted clouds (found as lift over the sky's own gradient inside the SAM sky mask, canvas grain and the altar smoke excluded) were removed and the sky behind each painted back with LaMa (big-lama via simple-lama-inpainting) on full-resolution crops at 3840 px, composited softly; resized with Lanczos and encoded to WebP (cwebp -q 80 -m 6 -sharp_yuv). The hero's WebGL canvas draws Cole's own clouds back over this plate, drifting.",
+  "createdAt": "2026-10-20T17:50:30.215Z"
+}

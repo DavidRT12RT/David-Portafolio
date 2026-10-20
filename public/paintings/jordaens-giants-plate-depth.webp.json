@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin: relative depth of Jacob Jordaens, The Fall of the Giants (La caída de los gigantes), 1636-1638, oil on canvas, Museo del Prado, Madrid. Public domain (Wikimedia Commons): https://commons.wikimedia.org/wiki/File:Jacob_Jordaens_-_La_ca%C3%ADda_de_los_Gigantes,_1636-1638.jpg (3051x1915), downloaded 2026-10-19. estimated locally on 2026-10-20 with Depth Anything V2 Large at 784 and 1036 px and fused; inside the removed figures the surrounding depth was carried in smoothly (OpenCV Telea inpainting, blurred); 8-bit, white = near, 2048 px, WebP lossless. Drives the giants room's parallax.",
+  "createdAt": "2026-10-20T07:10:15.795Z"
+}

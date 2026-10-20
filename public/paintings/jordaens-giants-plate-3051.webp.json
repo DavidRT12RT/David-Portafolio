@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin: derived 2026-10-20 from Jacob Jordaens, The Fall of the Giants (La caída de los gigantes), 1636-1638, oil on canvas, Museo del Prado, Madrid. Public domain (Wikimedia Commons): https://commons.wikimedia.org/wiki/File:Jacob_Jordaens_-_La_ca%C3%ADda_de_los_Gigantes,_1636-1638.jpg (3051x1915), downloaded 2026-10-19. The seven figures animated in the giants room (cut out with SAM, facebook/sam-vit-large, from box and point prompts) were removed and the background behind them painted back with LaMa (big-lama via simple-lama-inpainting) at 1536 px, composited onto the original at full resolution outside the figures; resized with Lanczos and encoded to WebP (cwebp -q 80 -m 6 -sharp_yuv). The WebGL canvas draws the figures back over this plate.",
+  "createdAt": "2026-10-20T07:10:15.773Z"
+}

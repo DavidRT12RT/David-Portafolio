@@ -1,0 +1,658 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T12:00:00Z",
+  "title": "Design System: David Arcos Melgarejo",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Hazy Sky",
+        "canonical": "#ebe5dd",
+        "oklch": "oklch(92.4% 0.013 75)",
+        "tonalRamp": [
+          "#0e0a06",
+          "#28231d",
+          "#443f39",
+          "#625d56",
+          "#827c75",
+          "#a39d96",
+          "#c9c3bb",
+          "#f4ede5"
+        ]
+      },
+      "ground-lit": {
+        "role": "neutral",
+        "displayName": "Lit Sky",
+        "canonical": "#f3eee7",
+        "oklch": "oklch(95.1% 0.011 77)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#27231e",
+          "#433f3a",
+          "#615d57",
+          "#817c76",
+          "#a29e97",
+          "#c8c3bd",
+          "#f3eee7"
+        ]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Stone",
+        "canonical": "#d3c7b8",
+        "oklch": "oklch(83.5% 0.025 74)",
+        "tonalRamp": [
+          "#110902",
+          "#2b2217",
+          "#483e31",
+          "#665c4f",
+          "#867b6e",
+          "#a89c8e",
+          "#cec2b3",
+          "#f9ecdd"
+        ]
+      },
+      "stone-deep": {
+        "role": "neutral",
+        "displayName": "Deep Stone",
+        "canonical": "#b9aa97",
+        "oklch": "oklch(74.6% 0.032 74)",
+        "tonalRamp": [
+          "#130900",
+          "#2d2212",
+          "#4a3d2d",
+          "#695b4a",
+          "#897b69",
+          "#ab9c89",
+          "#d1c2ae",
+          "#fcecd8"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Umber Ink",
+        "canonical": "#24170f",
+        "oklch": "oklch(21.9% 0.026 53)",
+        "tonalRamp": [
+          "#140803",
+          "#2e2118",
+          "#4b3c33",
+          "#6a5a50",
+          "#8a796f",
+          "#ac9a90",
+          "#d2c0b5",
+          "#fdeadf"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Umber",
+        "canonical": "#5a4535",
+        "oklch": "oklch(40.8% 0.039 59)",
+        "tonalRamp": [
+          "#170700",
+          "#321f10",
+          "#4f3b2b",
+          "#6f5948",
+          "#8f7867",
+          "#b19987",
+          "#d8bfac",
+          "#ffe9d6"
+        ]
+      },
+      "ink-mute": {
+        "role": "neutral",
+        "displayName": "Mute Umber",
+        "canonical": "#76624f",
+        "oklch": "oklch(51.0% 0.039 65)",
+        "tonalRamp": [
+          "#160700",
+          "#31200f",
+          "#4e3c2a",
+          "#6d5947",
+          "#8e7965",
+          "#b09a86",
+          "#d6c0ab",
+          "#ffead4"
+        ]
+      },
+      "gold": {
+        "role": "primary",
+        "displayName": "Gilding",
+        "canonical": "#b4843f",
+        "oklch": "oklch(64.7% 0.104 74)",
+        "tonalRamp": [
+          "#1e0200",
+          "#3e1900",
+          "#5f3400",
+          "#805300",
+          "#a2732c",
+          "#c59450",
+          "#eabb7b",
+          "#ffe7b1"
+        ]
+      },
+      "gold-deep": {
+        "role": "primary",
+        "displayName": "Deep Gold",
+        "canonical": "#85581f",
+        "oklch": "oklch(49.9% 0.093 69)",
+        "tonalRamp": [
+          "#1f0100",
+          "#3f1700",
+          "#5f3400",
+          "#7f5318",
+          "#a1723c",
+          "#c4945d",
+          "#ecb982",
+          "#ffe5b3"
+        ]
+      },
+      "gold-light": {
+        "role": "primary",
+        "displayName": "Light Gold",
+        "canonical": "#d9b06a",
+        "oklch": "oklch(77.9% 0.100 80)",
+        "tonalRamp": [
+          "#1c0400",
+          "#3b1b00",
+          "#5b3700",
+          "#7b5600",
+          "#9d762e",
+          "#bf9751",
+          "#e6bd79",
+          "#ffe9b0"
+        ]
+      },
+      "gold-ink": {
+        "role": "primary",
+        "displayName": "Gilding for Ink",
+        "canonical": "#62421a",
+        "oklch": "oklch(40.7% 0.070 69)",
+        "tonalRamp": [
+          "#1c0300",
+          "#391c00",
+          "#57380f",
+          "#77562f",
+          "#99764e",
+          "#bb976e",
+          "#e2bd93",
+          "#ffe7bc"
+        ]
+      },
+      "sienna": {
+        "role": "secondary",
+        "displayName": "Sienna",
+        "canonical": "#9c4a24",
+        "oklch": "oklch(50.6% 0.121 44)",
+        "tonalRamp": [
+          "#230000",
+          "#460c00",
+          "#6c2700",
+          "#93421b",
+          "#b7633d",
+          "#d88764",
+          "#fab091",
+          "#ffdec2"
+        ]
+      },
+      "shade": {
+        "role": "neutral",
+        "displayName": "Portico Shade",
+        "canonical": "#21150e",
+        "oklch": "oklch(20.9% 0.024 51)",
+        "tonalRamp": [
+          "#130803",
+          "#2e211a",
+          "#4a3c34",
+          "#695a52",
+          "#897a71",
+          "#ab9b91",
+          "#d1c0b7",
+          "#fceae0"
+        ]
+      },
+      "shade-lit": {
+        "role": "neutral",
+        "displayName": "Lit Shade",
+        "canonical": "#2d1f15",
+        "oklch": "oklch(25.4% 0.028 57)",
+        "tonalRamp": [
+          "#140802",
+          "#2f2117",
+          "#4c3c31",
+          "#6a5a4e",
+          "#8b796d",
+          "#ad9a8e",
+          "#d3c0b3",
+          "#feeadd"
+        ]
+      },
+      "shade-line": {
+        "role": "neutral",
+        "displayName": "Shade Line",
+        "canonical": "#4a3828",
+        "oklch": "oklch(35.6% 0.037 63)",
+        "tonalRamp": [
+          "#160700",
+          "#312011",
+          "#4e3c2c",
+          "#6d5948",
+          "#8d7967",
+          "#af9a88",
+          "#d6c0ac",
+          "#ffead6"
+        ]
+      },
+      "marble": {
+        "role": "neutral",
+        "displayName": "Sunlit Marble",
+        "canonical": "#f7f2ea",
+        "oklch": "oklch(96.3% 0.012 80)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#27231e",
+          "#433f39",
+          "#615d56",
+          "#817d75",
+          "#a29e96",
+          "#c8c3bc",
+          "#f3eee6"
+        ]
+      },
+      "marble-dim": {
+        "role": "neutral",
+        "displayName": "Dim Marble",
+        "canonical": "#cfc1ae",
+        "oklch": "oklch(81.7% 0.030 76)",
+        "tonalRamp": [
+          "#120900",
+          "#2d2213",
+          "#493e2e",
+          "#685c4b",
+          "#887b69",
+          "#aa9c8a",
+          "#d0c2af",
+          "#fbecd9"
+        ]
+      },
+      "marble-mute": {
+        "role": "neutral",
+        "displayName": "Mute Marble",
+        "canonical": "#a59482",
+        "oklch": "oklch(67.7% 0.033 69)",
+        "tonalRamp": [
+          "#140800",
+          "#2e2112",
+          "#4b3d2d",
+          "#6a5b4a",
+          "#8b7a69",
+          "#ac9b89",
+          "#d3c1ae",
+          "#feebd8"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Name",
+        "purpose": "The name in the first viewport only; uppercase, umber, with the gilded glint overlay; 12.6vw below 768px."
+      },
+      "sign-greek": {
+        "displayName": "Greek Sign",
+        "purpose": "Each room's Greek name; colour color-mix(tone-accent at 45% + room-light x 55%, tone-ground)."
+      },
+      "headline": {
+        "displayName": "Local Title",
+        "purpose": "The room's local-language title beneath the Greek; highlight at 500 in the strong tone."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Job roles, step titles, project titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text, 62-64ch measure, often through .lit-dim."
+      },
+      "body-note": {
+        "displayName": "Room Note",
+        "purpose": "The note under a room sign, 46ch, mute tone."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "All .btn variants."
+      },
+      "label": {
+        "displayName": "Inventory Label",
+        "purpose": "Cartela inventory lines and method detail labels; uppercase, deep gold."
+      },
+      "caption": {
+        "displayName": "Credit",
+        "purpose": "Painting credits and figure captions."
+      }
+    },
+    "toneContexts": {
+      "sky": {
+        "selector": ":root",
+        "strong": "ink",
+        "soft": "ink-soft",
+        "mute": "ink-mute",
+        "line": "stone",
+        "accent": "gold-deep",
+        "ground": "ground"
+      },
+      "shade": {
+        "selector": ".on-shade",
+        "strong": "marble",
+        "soft": "marble-dim",
+        "mute": "marble-mute",
+        "line": "shade-line",
+        "accent": "gold-light",
+        "ground": "shade"
+      }
+    },
+    "shadows": [
+      {
+        "name": "cartela-sky",
+        "value": "0 1px 0 rgba(255,255,255,0.7) inset, 0 18px 36px -22px rgba(60,36,16,0.45), 0 2px 6px rgba(60,36,16,0.12)",
+        "purpose": "Museum labels in sunlight."
+      },
+      {
+        "name": "cartela-shade",
+        "value": "0 1px 0 rgba(255,255,255,0.5) inset, 0 18px 40px -18px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.35)",
+        "purpose": "Museum labels on the colonnade, border removed."
+      },
+      {
+        "name": "name-in-sky",
+        "value": "text-shadow: 0 1px 0 rgba(255,248,236,0.45), 0 14px 34px rgba(60,36,16,0.2)",
+        "purpose": "The display name standing in front of the painting's sky."
+      },
+      {
+        "name": "fallback-print",
+        "value": "0 24px 50px -30px rgba(60,36,16,0.6)",
+        "purpose": "SMK photographs shown without WebGL, framed by a 1px deep-stone border."
+      },
+      {
+        "name": "painting-scrim",
+        "value": "linear-gradient(rgba(28,16,9,0.5..0.9) to rgba(28,16,9,0))",
+        "purpose": "The painting's own umber deepened under words; fades out with the stage's progress."
+      },
+      {
+        "name": "giants-scrim",
+        "value": "linear-gradient(to top, rgba(20,12,7,0.9) 0%, rgba(20,12,7,0.55) 40%, rgba(20,12,7,0) 100%) over the lower 58%",
+        "purpose": "The storm's darker umber under the giants' narration."
+      },
+      {
+        "name": "portico-frame",
+        "value": "linear-gradient(to bottom, rgba(33,21,14,0.88) 0%, rgba(33,21,14,0.5) 20%, rgba(33,21,14,0) 42%), linear-gradient(to top, rgba(33,21,14,0.82) 0%, rgba(33,21,14,0.38) 16%, rgba(33,21,14,0) 32%)",
+        "purpose": "The portico's roof and floor in shade, framing Church's Parthenon between the columns."
+      },
+      {
+        "name": "portico-sign-shade",
+        "value": "radial-gradient(ellipse 48% 42% at 12% 20%, rgba(33,21,14,0.78), rgba(33,21,14,0) 100%); below 768px linear-gradient(to bottom, rgba(33,21,14,0.82) 0%, rgba(33,21,14,0.4) 26%, rgba(33,21,14,0) 40%)",
+        "purpose": "Shade behind the ΕΡΓΑ sign over the bright temple; fades out over the first 10% of the stage."
+      },
+      {
+        "name": "portico-edge",
+        "value": "linear-gradient(to bottom|top, var(--color-ground), transparent), 24svh",
+        "purpose": "Feathers easing the Parthenon view into the sky beyond the works stage."
+      },
+      {
+        "name": "colonnade-plate",
+        "value": "MeshStandard color #9e9e9e, emissiveMap = screenshot, emissive #ffffff at 0.5",
+        "purpose": "Screenshots as softly self-lit panels on the columns."
+      },
+      {
+        "name": "pillar-beam",
+        "value": "AdditiveBlending, colour #f2c27a (SHAFT), 80 dust motes, alpha = (facing^1.8 * along * (1 + 0.8 * low) + edge pool) * opacity, strongest low down; cut on screen along the projected top edge of the panel frame (gl_FragCoord.y against the frame top in drawing-buffer pixels, 5px fade); the column spotlight takes the same colour",
+        "purpose": "Each column's shaft of sun, brightest in the air above the panel, never crossing the screenshot."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every UI transition and text entrance."
+      },
+      {
+        "name": "button-transition",
+        "value": "0.35s ease-out-expo",
+        "purpose": "Background, colour, border and 1px press on .btn."
+      },
+      {
+        "name": "nav-transition",
+        "value": "500ms",
+        "purpose": "Nav background and the active underline's growth."
+      },
+      {
+        "name": "out-of-haze",
+        "value": "opacity 0 -> 1, blur 10px -> 0, rise 0.32em; 1.4s, staggered 0.16s",
+        "purpose": "The name's entrance; step captions use 0.55s with a 16px rise and 6px blur."
+      },
+      {
+        "name": "room-light",
+        "value": "rises as a room's top climbs 80% -> 30% of the viewport, falls as its bottom climbs 70% -> 20%",
+        "purpose": "Written to --room-light on every [data-room]; drives .lit, .lit-dim, the Greek sign, figure light and the colonnade controls (squared)."
+      },
+      {
+        "name": "haze-curve",
+        "value": "haze = (1 - light)^1.4",
+        "purpose": "Figure and column haze, lifting a little ahead of the sun."
+      },
+      {
+        "name": "scene-damping",
+        "value": "damp lambda 3.4 (light), 2.2 (figure yaw)",
+        "purpose": "Smoothed light and turn in the gallery; skipped under reduced motion."
+      },
+      {
+        "name": "painting-direction",
+        "value": "Direction(progress, width, height) => Shot {center, anchor, zoom, dolly?, dollyToward?, haze?, spot?, mist?, light}",
+        "purpose": "The painting camera; smoothstep/smootherstep between shots, zoom dips up to 28% on long travels, every room ends hazing into the ground."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Stages stop pinning (100svh), entrances render at rest, pointer light and parallax stop, smooth scroll off, method walk becomes a still list."
+      },
+      {
+        "name": "portico-view",
+        "value": "zoom 1.9 -> 1.12 (1.55 -> 1.04 tall) on the temple over 12% of the stage; pan 0.38 -> 0.62 (0.22 -> 0.78 tall) with dolly 0.22; haze from 93%",
+        "purpose": "Church's Parthenon camera, sharing the works stage's scroll span."
+      },
+      {
+        "name": "narrated-stop",
+        "value": "hold 55% of each stop with a 4% zoom creep, then travel with smootherstep; zoom dips 24-36% on long travels",
+        "purpose": "The oracle's walk; captions show only while held."
+      },
+      {
+        "name": "vapour",
+        "value": "Shot.vapor {from: point, strength 0..1} -> uVaporAt / uVapor",
+        "purpose": "The oracle's column of vapour from the chasm, swelling as the camera rises to the Pythia."
+      },
+      {
+        "name": "word-reveal",
+        "value": "CinematicText: per word, blur 8-10px -> 0, stagger 18-30ms",
+        "purpose": "Narration over paintings coming out of the haze word by word."
+      },
+      {
+        "name": "storm",
+        "value": "storm 0.85 (fbm clouds over far depth); strikes every ~4.6s plus one per scroll milestone; envelope flash 0.85 / flicker / 0.7, exp decay; giant flinch exp(-4.5u)·sin(14u); camera shake 0.25·flash",
+        "purpose": "Jordaens' thunderbolts; seeded so a bolt keeps its shape for its lifetime. Stops under reduced motion (time does not run)."
+      },
+      {
+        "name": "layers",
+        "value": "LayerSpec {rect, depth, pivot}; LayerMotion {dx, dy, rotate}",
+        "purpose": "Premultiplied RGBA cut-outs moved over a painted-out plate, with the plate's camera, parallax and light."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ],
+    "conventions": {
+      "accessibility": [
+        "Painting stages carry an sr-only heading or ordered list with the words their captions show one at a time; visual captions are aria-hidden.",
+        "Scroll-driven counters use aria-live=\"polite\".",
+        "Every painting stage is marked data-guide-cover so the guide card stays off it.",
+        "The viewer is a native modal dialog; html:has(dialog[open]) stops page scroll.",
+        "Skip link is a solid button revealed on focus; focus ring 2px tone accent, offset 3px.",
+        "Without JS, [data-reveal] content is forced visible; without WebGL, SMK photographs stand in for the figures and the plain painting image stays."
+      ],
+      "provenance": "Every shipping raster carries provenance written by `impeccable embed-prompt` (origin, licence, processing, use): a <file>.json sidecar beside each WebP in public/paintings (including depth maps, SAM cut-out layers and LaMa-filled plates), public/statues and public/projects/plates; an impeccable:prompt metadata entry embedded in PNG and JPEG files (project screenshots, og-image.jpg).",
+      "roomSigns": "One capitalised Ancient Greek noun per room with transliteration and gloss in both languages: ΛΟΓΟΣ, ΟΔΥΣΣΕΙΑ, ΜΕΘΟΔΟΣ, ΤΕΧΝΗ, ΜΑΝΤΕΙΟΝ, ΕΡΓΑ, ΓΙΓΑΝΤΟΜΑΧΙΑ, ΧΑΙΡΕ; lang=\"el\", above the local title in one heading; size capped by letter count (--glyphs) to fit phones.",
+      "roomOrder": "Hero (Cole) -> ΛΟΓΟΣ (Plato) -> ΟΔΥΣΣΕΙΑ (Rubens, Homer) -> ΜΕΘΟΔΟΣ (Bayeu) -> ΤΕΧΝΗ (discus thrower) -> ΜΑΝΤΕΙΟΝ (Miola, Athena) -> ΕΡΓΑ (Church's Parthenon, colonnade) -> ΓΙΓΑΝΤΟΜΑΧΙΑ (Jordaens, animated) -> ΧΑΙΡΕ (Apollo); paintings and figures alternate."
+    }
+  },
+  "components": [
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "The room's strongest tone as a block: umber on the sky (shown), marble on shade inside .on-shade; gilding on hover.",
+      "html": "<a class=\"ds-btn ds-btn-solid\" href=\"#\">Ver mi trabajo</a>",
+      "css": ":host{--color-ground:#ebe5dd;--color-ink:#24170f;--color-ink-soft:#5a4535;--color-gold:#b4843f;--color-gold-deep:#85581f;--color-gold-light:#d9b06a;--color-marble:#f7f2ea;--color-stone:#d3c7b8;--color-stone-deep:#b9aa97;--color-shade:#21150e;--color-shade-line:#4a3828;--color-marble-dim:#cfc1ae;--color-marble-mute:#a59482;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}.ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;min-height:2.875rem;padding:0 1.35rem;border:0;border-radius:0;font-family:var(--font-commissioner),Commissioner,ui-sans-serif,system-ui,sans-serif;font-size:0.9375rem;font-weight:500;letter-spacing:0.01em;text-decoration:none;cursor:pointer;transition:background-color .35s var(--ease-out-expo),color .35s var(--ease-out-expo),border-color .35s var(--ease-out-expo),transform .35s var(--ease-out-expo)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--color-gold-deep);outline-offset:3px;border-radius:2px}.ds-btn-solid{background:var(--color-ink);color:var(--color-ground)}.ds-btn-solid:hover{background:var(--color-gold);color:var(--color-ink)}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Hairline block at 38% of the strong tone; border and text turn to the tone accent on hover.",
+      "html": "<a class=\"ds-btn ds-btn-outline\" href=\"#\">Contáctame</a>",
+      "css": ":host{--color-ground:#ebe5dd;--color-ink:#24170f;--color-ink-soft:#5a4535;--color-gold:#b4843f;--color-gold-deep:#85581f;--color-gold-light:#d9b06a;--color-marble:#f7f2ea;--color-stone:#d3c7b8;--color-stone-deep:#b9aa97;--color-shade:#21150e;--color-shade-line:#4a3828;--color-marble-dim:#cfc1ae;--color-marble-mute:#a59482;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}.ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;min-height:2.875rem;padding:0 1.35rem;border:0;border-radius:0;font-family:var(--font-commissioner),Commissioner,ui-sans-serif,system-ui,sans-serif;font-size:0.9375rem;font-weight:500;letter-spacing:0.01em;text-decoration:none;cursor:pointer;transition:background-color .35s var(--ease-out-expo),color .35s var(--ease-out-expo),border-color .35s var(--ease-out-expo),transform .35s var(--ease-out-expo)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--color-gold-deep);outline-offset:3px;border-radius:2px}.ds-btn-outline{background:transparent;border:1px solid color-mix(in oklab,var(--color-ink) 38%,transparent);color:var(--color-ink)}.ds-btn-outline:hover{border-color:var(--color-gold-deep);color:var(--color-gold-deep)}"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Always umber with marble text, for labels that must read in either light; deep gold on hover.",
+      "html": "<button class=\"ds-btn ds-btn-ink\">Ver pantallas <span class=\"ds-n\">3</span></button>",
+      "css": ":host{--color-ground:#ebe5dd;--color-ink:#24170f;--color-ink-soft:#5a4535;--color-gold:#b4843f;--color-gold-deep:#85581f;--color-gold-light:#d9b06a;--color-marble:#f7f2ea;--color-stone:#d3c7b8;--color-stone-deep:#b9aa97;--color-shade:#21150e;--color-shade-line:#4a3828;--color-marble-dim:#cfc1ae;--color-marble-mute:#a59482;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}.ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;min-height:2.875rem;padding:0 1.35rem;border:0;border-radius:0;font-family:var(--font-commissioner),Commissioner,ui-sans-serif,system-ui,sans-serif;font-size:0.9375rem;font-weight:500;letter-spacing:0.01em;text-decoration:none;cursor:pointer;transition:background-color .35s var(--ease-out-expo),color .35s var(--ease-out-expo),border-color .35s var(--ease-out-expo),transform .35s var(--ease-out-expo)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--color-gold-deep);outline-offset:3px;border-radius:2px}.ds-btn-ink{background:var(--color-ink);color:var(--color-marble);min-height:2.25rem;padding:0 1rem;font-size:0.8125rem}.ds-btn-ink:hover{background:var(--color-gold-deep)}.ds-n{font-variant-numeric:tabular-nums;color:var(--color-marble-dim)}"
+    },
+    {
+      "name": "Cartela",
+      "kind": "card",
+      "refersTo": "cartela",
+      "description": "The museum label: a square slip of sunlit marble with a lit edge and soft umber cast shadow; title, deep-gold inventory line, description.",
+      "html": "<div class=\"ds-cartela\"><h3 class=\"ds-cartela-title\">Kapli — Plataforma Educativa con IA</h3><p class=\"ds-cartela-inv\">React · React Native · Laravel · RAG</p><p class=\"ds-cartela-desc\">Plataforma educativa de nivel producción utilizada por múltiples instituciones.</p></div>",
+      "css": ":host{--color-ground:#ebe5dd;--color-ink:#24170f;--color-ink-soft:#5a4535;--color-gold:#b4843f;--color-gold-deep:#85581f;--color-gold-light:#d9b06a;--color-marble:#f7f2ea;--color-stone:#d3c7b8;--color-stone-deep:#b9aa97;--color-shade:#21150e;--color-shade-line:#4a3828;--color-marble-dim:#cfc1ae;--color-marble-mute:#a59482;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}.ds-cartela{max-width:23rem;padding:1rem 1.25rem;background:var(--color-marble);color:var(--color-ink);border:1px solid color-mix(in oklab,var(--color-stone-deep) 60%,transparent);border-radius:0;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 18px 36px -22px rgba(60,36,16,.45),0 2px 6px rgba(60,36,16,.12);font-family:var(--font-commissioner),Commissioner,ui-sans-serif,system-ui,sans-serif;}.ds-cartela-title{margin:0;font-size:1.0625rem;font-weight:480;line-height:1.35}.ds-cartela-inv{margin:.5rem 0 0;font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--color-gold-deep)}.ds-cartela-desc{margin:.75rem 0 0;font-size:.875rem;line-height:1.55;color:var(--color-ink-soft)}"
+    },
+    {
+      "name": "Room Sign",
+      "kind": "custom",
+      "refersTo": "sign-greek",
+      "description": "A room's heading: the Greek name flared and gilded, the local title beneath, an optional note.",
+      "html": "<div class=\"ds-sign\"><h2 class=\"ds-sign-h\" style=\"--glyphs:4\"><span lang=\"el\" class=\"ds-sign-greek\">ΕΡΓΑ</span><span class=\"ds-sign-local\">Proyectos <strong>destacados</strong></span></h2><p class=\"ds-sign-note\">Sistemas en producción, de punta a punta.</p></div>",
+      "css": ":host{--color-ground:#ebe5dd;--color-ink:#24170f;--color-ink-soft:#5a4535;--color-gold:#b4843f;--color-gold-deep:#85581f;--color-gold-light:#d9b06a;--color-marble:#f7f2ea;--color-stone:#d3c7b8;--color-stone-deep:#b9aa97;--color-shade:#21150e;--color-shade-line:#4a3828;--color-marble-dim:#cfc1ae;--color-marble-mute:#a59482;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}.ds-sign{font-family:var(--font-commissioner),Commissioner,ui-sans-serif,system-ui,sans-serif;color:var(--color-ink)}.ds-sign-h{display:flex;flex-direction:column;gap:.35em;margin:0;font-weight:inherit}.ds-sign-greek{font-size:min(clamp(3.25rem,7.4vw,6rem),calc((100vw - 2.5rem) * 1.36 / var(--glyphs,6)));line-height:.92;letter-spacing:.04em;font-weight:330;font-variation-settings:'FLAR' 100,'VOLM' 0;color:var(--color-gold-deep)}.ds-sign-local{font-size:clamp(1.5rem,2.3vw,2.125rem);line-height:1.1;font-weight:300;letter-spacing:-.01em;color:var(--color-ink-soft)}.ds-sign-local strong{font-weight:500;color:var(--color-ink)}.ds-sign-note{margin:1.25rem 0 0;max-width:46ch;font-size:1.0625rem;line-height:1.55;color:#76624f}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Fixed 4rem bar, clear over the first painting, sky at 92% with a stone hairline after it; current room strong with a growing gilding underline.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-name\" href=\"#\">David Arcos Melgarejo</a><ul class=\"ds-nav-links\"><li><a href=\"#\">Acerca</a></li><li><a href=\"#\" aria-current=\"location\" class=\"is-current\">Experiencia</a></li><li><a href=\"#\">Proyectos</a></li></ul><span class=\"ds-nav-lang\"><b>ES</b> <i>/</i> EN</span></nav>",
+      "css": ":host{--color-ground:#ebe5dd;--color-ink:#24170f;--color-ink-soft:#5a4535;--color-gold:#b4843f;--color-gold-deep:#85581f;--color-gold-light:#d9b06a;--color-marble:#f7f2ea;--color-stone:#d3c7b8;--color-stone-deep:#b9aa97;--color-shade:#21150e;--color-shade-line:#4a3828;--color-marble-dim:#cfc1ae;--color-marble-mute:#a59482;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}.ds-nav{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:4rem;padding:0 2.5rem;background:color-mix(in oklab,var(--color-ground) 92%,transparent);border-bottom:1px solid var(--color-stone);font-family:var(--font-commissioner),Commissioner,ui-sans-serif,system-ui,sans-serif;color:var(--color-ink)}.ds-nav-name{font-size:.8125rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--color-ink);text-decoration:none;white-space:nowrap}.ds-nav-links{display:flex;gap:2rem;list-style:none;margin:0;padding:0}.ds-nav-links a{position:relative;padding:.5rem 0;font-size:.875rem;color:var(--color-ink-soft);text-decoration:none;transition:color .3s}.ds-nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;height:1px;width:0;background:var(--color-gold);transition:width .5s}.ds-nav-links a:hover,.ds-nav-links a.is-current{color:var(--color-ink)}.ds-nav-links a.is-current::after{width:100%}.ds-nav-links a:focus-visible{outline:2px solid var(--color-gold-deep);outline-offset:3px}.ds-nav-lang{font-size:.8125rem;font-weight:500;letter-spacing:.12em;color:#76624f}.ds-nav-lang b{color:var(--color-ink);font-weight:500}.ds-nav-lang i{font-style:normal;color:var(--color-stone)}"
+    },
+    {
+      "name": "Guide Card",
+      "kind": "card",
+      "refersTo": "guide-card",
+      "description": "The scrollspy's 'you are here' label: room title, Greek name, slanted transliteration and gloss, then the figure's SMK data.",
+      "html": "<div class=\"ds-guide\"><p class=\"ds-guide-row\"><span>Acerca</span><span lang=\"el\" class=\"ds-guide-greek\">ΛΟΓΟΣ</span></p><p class=\"ds-soft\"><span class=\"ds-translit\">lógos</span>, la razón</p><div class=\"ds-guide-fig\"><p><b>Platón</b></p><p class=\"ds-soft\">Vaciado en yeso</p><p class=\"ds-inv\">SMK · KAS1234</p></div></div>",
+      "css": ":host{--color-ground:#ebe5dd;--color-ink:#24170f;--color-ink-soft:#5a4535;--color-gold:#b4843f;--color-gold-deep:#85581f;--color-gold-light:#d9b06a;--color-marble:#f7f2ea;--color-stone:#d3c7b8;--color-stone-deep:#b9aa97;--color-shade:#21150e;--color-shade-line:#4a3828;--color-marble-dim:#cfc1ae;--color-marble-mute:#a59482;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}.ds-guide{width:19.6875rem;padding:.75rem .875rem;background:var(--color-marble);color:var(--color-ink);border-radius:0;font-family:var(--font-commissioner),Commissioner,ui-sans-serif,system-ui,sans-serif;font-size:.8125rem;line-height:1.45}.ds-guide p{margin:0}.ds-guide-row{display:flex;align-items:baseline;justify-content:space-between;gap:.75rem;font-weight:500}.ds-guide-greek{font-size:.75rem;letter-spacing:.12em;color:var(--color-gold-deep)}.ds-soft{color:var(--color-ink-soft)}.ds-translit{font-variation-settings:'slnt' -10,'FLAR' 0}.ds-guide-fig{margin-top:.5rem;padding-top:.5rem;border-top:1px solid color-mix(in oklab,var(--color-ink) 15%,transparent)}.ds-guide-fig b{font-weight:500}.ds-inv{margin-top:.375rem!important;font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--color-gold-deep)}"
+    },
+    {
+      "name": "Shade Context Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "The same outline button inside .on-shade: marble hairline and text on the portico shade, light gold on hover.",
+      "html": "<div class=\"ds-shade\"><a class=\"ds-btn ds-btn-outline-shade\" href=\"#\">GitHub</a></div>",
+      "css": ":host{--color-ground:#ebe5dd;--color-ink:#24170f;--color-ink-soft:#5a4535;--color-gold:#b4843f;--color-gold-deep:#85581f;--color-gold-light:#d9b06a;--color-marble:#f7f2ea;--color-stone:#d3c7b8;--color-stone-deep:#b9aa97;--color-shade:#21150e;--color-shade-line:#4a3828;--color-marble-dim:#cfc1ae;--color-marble-mute:#a59482;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}.ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;min-height:2.875rem;padding:0 1.35rem;border:0;border-radius:0;font-family:var(--font-commissioner),Commissioner,ui-sans-serif,system-ui,sans-serif;font-size:0.9375rem;font-weight:500;letter-spacing:0.01em;text-decoration:none;cursor:pointer;transition:background-color .35s var(--ease-out-expo),color .35s var(--ease-out-expo),border-color .35s var(--ease-out-expo),transform .35s var(--ease-out-expo)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--color-gold-deep);outline-offset:3px;border-radius:2px}.ds-shade{background:var(--color-shade);padding:1.5rem}.ds-btn-outline-shade{background:transparent;border:1px solid color-mix(in oklab,var(--color-marble) 38%,transparent);color:var(--color-marble)}.ds-btn-outline-shade:hover{border-color:var(--color-gold-light);color:var(--color-gold-light)}.ds-btn-outline-shade:focus-visible{outline-color:var(--color-gold-light)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The City in Afternoon Light",
+    "overview": "The site is a walk through the city of Thomas Cole's *The Consummation of Empire* (1836) late in the day. Every colour is taken from that painting: the hazy sky is the page's ground, sunlit marble carries labels, gilding marks what matters, and the umber of its deepest shade becomes the portico where the works stand, open onto Frederic Church's Parthenon. Rooms follow one another down a single scroll; each holds a marble cast from SMK's Royal Cast Collection, or a full-screen painting, standing in haze until the visitor's arrival lets the sun find it.\n\nDepth is light, not chrome. Figures are lit in WebGL by a moving sun, a sky fill and a warm bounce; paintings are drawn from a depth map so near things move against far ones, the light relights their relief and the distance dissolves into the ground first. Text obeys the same law: it comes out of the haze as the room's light rises. Surfaces are square, flat slips of marble and hairlines of stone; there are no cards, no glass, no accent neon.\n\nDensity is low and the pacing is architectural: a room is a viewport or more, with the sign set large and the reading column narrow. Everything still reads with JavaScript, WebGL or motion off.",
+    "keyCharacteristics": [
+      "One palette, from one painting: sky ground, umber ink, gilding, sunlit marble, portico shade.",
+      "Two tone contexts: umber on the sky, marble in the shade; components read tones, never fixed colours.",
+      "Light and haze are the only gradients and the only motion grammar.",
+      "Museum cartelas with real collection data are the component language.",
+      "Bilingual room signage: the Greek name in flared Commissioner, the visitor's language beneath.",
+      "Square corners everywhere; hairlines instead of boxes."
+    ],
+    "rules": [
+      {
+        "name": "The One Painting Rule",
+        "body": "Every colour on the page exists in Cole's painting. A new colour needs a source in one of the site's paintings, not in a UI kit.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tone Context Rule",
+        "body": "Components read `tone`, `tone-soft`, `tone-mute`, `tone-line`, `tone-accent` and `tone-ground`, never ink or marble directly. On the sky (`:root`) the tones resolve to umber, stone and deep gold over the sky; inside `.on-shade` they resolve to marble, shade line and light gold over the portico shade. The only fixed-colour components are the cartela family (always marble and ink) and the ink button (always umber with marble).",
+        "section": "colors"
+      },
+      {
+        "name": "The Gold Ladder Rule",
+        "body": "Gold is chosen by what it sits on: gilding for fills and lines, deep gold for type on the sky, gilding-for-ink for small type over a painting's sky, light gold for type in shade.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flare Axis Rule",
+        "body": "Signage flares, reading never does. Body sets FLAR 0; narration over a painting takes a little flare (FLAR 50 for the giants' lines, 60 for the oracle's step titles), the hero tagline FLAR 70, the about statement FLAR 80, Greek signs and the method's step numerals FLAR 100.",
+        "section": "typography"
+      },
+      {
+        "name": "The Own Slant Rule",
+        "body": "Transliterations lean on Commissioner's slant axis (slnt -10), never a synthesized italic.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Name Rule",
+        "body": "Cormorant SC is the name's face and nothing else's.",
+        "section": "typography"
+      },
+      {
+        "name": "The Room Sign Naming Rule",
+        "body": "Each room carries one capitalised Ancient Greek noun with its transliteration and gloss: ΛΟΓΟΣ (about), ΟΔΥΣΣΕΙΑ (experience), ΜΕΘΟΔΟΣ (method), ΤΕΧΝΗ (skills), ΜΑΝΤΕΙΟΝ (the oracle), ΕΡΓΑ (projects), ΓΙΓΑΝΤΟΜΑΧΙΑ (the battle of the giants), ΧΑΙΡΕ (contact). The Greek is marked `lang=\"el\"`, sits above the existing local-language title as part of the same heading, and never replaces it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Light and Haze Rule",
+        "body": "Light and haze are the only gradients. Anything the sun has not reached dissolves into its room's ground: figures through the haze uniform, paintings distance-first through their depth map, text through `--room-light` mixing its colour toward the ground. Vapour, storm cloud and lightning are the same weather, drawn in the painting's own renderer rather than in CSS.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Lit Slip Rule",
+        "body": "Only marble slips cast shadows, and always soft and umber (black in shade). No other surface is lifted.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** take every colour from the tone context: write `tone-*` utilities and wrap shaded rooms in `.on-shade`.",
+      "**Do** bring new content in with light: tie it to `--room-light` (the `.lit` / `.lit-dim` mixes) or the haze uniform, and keep it fully visible by default.",
+      "**Do** label every exhibit with real data in a cartela: SMK inventory for casts, real tags for projects, artist, title, date and collection for paintings.",
+      "**Do** mark each painting stage with `data-guide-cover`, give it an `sr-only` heading or list carrying the same words its captions show one at a time, and use `aria-live=\"polite\"` for counters that change with scroll.",
+      "**Do** give every reduced-motion path a still layout: stages stop pinning; the method, oracle and giants rooms become the whole painting (70svh, on the portico shade) above a hairline-ruled list; layers, storm and lightning stop with the clock; pointer light and parallax stop; the treasury's coins lie still under a fixed lamp.",
+      "**Do** ship every raster with its provenance written by `impeccable embed-prompt`, recording origin, licence, processing and use: a `<file>.json` sidecar beside each WebP (paintings, depth maps, statues, colonnade plates, and the SAM cut-out layers and LaMa-filled plates of animated paintings), an `impeccable:prompt` metadata entry inside PNG and JPEG files (project screenshots, the Open Graph card).",
+      "**Do** keep the sky colour identical in CSS, the painting renderer and the gallery scene, so haze lands exactly on the page."
+    ],
+    "donts": [
+      "**Don't** use gradients other than light and haze: the name's glint, scrims taken from a painting's own umber, the portico's shaded roof and floor over its view and the shade behind its sign, the feathers that ease that view into the sky, and the curtain's mask are the whole list.",
+      "**Don't** round corners on buttons, cartelas, cards or panels.",
+      "**Don't** set the name's Cormorant SC anywhere but the name, or let reading text flare.",
+      "**Don't** set small gold type on the sky in gilding or light gold; use deep gold, or gilding-for-ink over a painting.",
+      "**Don't** shadow anything but marble slips, and never with hard or offset shadows.",
+      "**Don't** replace a room's local-language title with its Greek name."
+    ]
+  }
+}

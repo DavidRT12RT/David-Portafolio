@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin: cloud 6 cut out on 2026-10-20 from Thomas Cole, The Consummation of Empire (1836, New-York Historical Society), public domain via Wikimedia Commons (7784x5277), downloaded 2026-10-19. Alpha from the cloud's lift over the sky gradient (soft, inside the SAM sky mask); colour unmixed from the LaMa-inpainted sky plate (C = (I - (1 - a) P) / a) so it composites back exactly where Cole painted it; 3840 px scale, WebP with alpha (cwebp -q 86 -alpha_q 100). Drifts across the hero's sky.",
+  "createdAt": "2026-10-20T17:50:30.453Z"
+}

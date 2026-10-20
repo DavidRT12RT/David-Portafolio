@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin: the figure 'lifter' cut out on 2026-10-20 from Jacob Jordaens, The Fall of the Giants (La caída de los gigantes), 1636-1638, oil on canvas, Museo del Prado, Madrid. Public domain (Wikimedia Commons): https://commons.wikimedia.org/wiki/File:Jacob_Jordaens_-_La_ca%C3%ADda_de_los_Gigantes,_1636-1638.jpg (3051x1915), downloaded 2026-10-19. Mask by SAM (facebook/sam-vit-large) from box and point prompts, cleaned (closing, holes filled, small islands dropped), eroded 1 px and feathered (Gaussian 1.1 px); cropped to its box with the original pixels and encoded to WebP with alpha (cwebp -q 84 -alpha_q 100). Animated as its own layer in the giants room.",
+  "createdAt": "2026-10-20T07:10:15.891Z"
+}

@@ -1,133 +1,204 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
+import { motion, useMotionValueEvent, useTransform } from "motion/react";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { ScrollStage, useScrollStage } from "@/components/ui/ScrollStage";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { colonnadeMode, goToWork, panelSize, pillarX } from "./gallery/colonnade-layout";
+import RoomSign from "./RoomSign";
+import { ArrowIcon } from "./icons";
 
-interface ProjectData {
-  images: string[];
-  tags: string[];
-}
-
-const projectImages: ProjectData[] = [
-  {
-    images: [
-      "/projects/solomon-consulting/1.png",
-      "/projects/solomon-consulting/2.png",
-    ],
-    tags: ["OpenAI Agents SDK", "Multi-Agent", "RAG", "React", "NestJS"],
-  },
-  {
-    images: [
-      "/projects/kapli-web/1.png",
-      "/projects/kapli-mobil/1.png",
-      "/projects/kapli-mobil/2.png",
-    ],
-    tags: ["React", "React Native", "Laravel", "AI Agents", "RAG"],
-  },
-  {
-    images: [
-      "/projects/scaleflow_suite/1.png",
-      "/projects/scaleflow_suite/2.png",
-    ],
-    tags: ["React", "AWS", "Firebase", "OpenAI", "Multi-Agent"],
-  },
-  {
-    images: [
-      "/projects/advance_inteligent_system/1.png",
-      "/projects/advance_inteligent_system/2.png",
-    ],
-    tags: ["YOLO", "Computer Vision", "LLM", "React", "Real-Time AI"],
-  },
+const projectImages: string[][] = [
+  ["/projects/solomon-consulting/1.png", "/projects/solomon-consulting/2.png"],
+  ["/projects/kapli-web/1.png", "/projects/kapli-mobil/1.png", "/projects/kapli-mobil/2.png"],
+  ["/projects/scaleflow_suite/1.png", "/projects/scaleflow_suite/2.png"],
+  ["/projects/advance_inteligent_system/1.png", "/projects/advance_inteligent_system/2.png"],
 ];
 
-function BentoProjectCard({
-  project,
-  images,
-  index,
-  onProjectClick,
-  isWide = false,
-}: {
-  project: { title: string; description: string; tags: string[] };
-  images: ProjectData;
-  index: number;
-  onProjectClick?: () => void;
-  isWide?: boolean;
-}) {
-  const [activeImg, setActiveImg] = useState(0);
+const onResize = (callback: () => void) => {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+};
+
+/** The viewport the canvas lays the colonnade out in, so these controls land on its panels exactly. */
+function useColonnadeViewport() {
+  const width = useSyncExternalStore(onResize, () => window.innerWidth, () => 1440);
+  const height = useSyncExternalStore(onResize, () => window.innerHeight, () => 900);
+  return { mode: colonnadeMode(width, height), aspect: width / height, width, height };
+}
+
+type Viewport = ReturnType<typeof useColonnadeViewport>;
+
+const fill = (template: string, n: number, total: number) =>
+  template.replace("{n}", String(n)).replace("{total}", String(total));
+
+/** One exhibit in the lightbox; keyed by project so its image position starts over each time. */
+function LightboxBody({ index, onClose }: { index: number; onClose: () => void }) {
+  const { t } = useLanguage();
+  const [shown, setShown] = useState(0);
+  const project = t.projects.items[index];
+  const images = projectImages[index];
+
+  const step = useCallback(
+    (delta: number) => setShown((current) => (current + delta + images.length) % images.length),
+    [images.length],
+  );
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="group h-full"
+    <div
+      className="flex h-full flex-col"
+      onKeyDown={(event) => {
+        if (event.key === "ArrowRight") step(1);
+        if (event.key === "ArrowLeft") step(-1);
+      }}
     >
-      <div
-        className="bento-card rounded-2xl h-full w-full overflow-hidden cursor-pointer relative"
-        onClick={onProjectClick}
-      >
-        <div className="absolute inset-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeImg}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={images.images[activeImg]}
-                alt={project.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </motion.div>
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
+      <div className="flex items-start justify-between gap-6 px-5 pb-3 pt-5 md:px-10 md:pt-7">
+        <div>
+          <h3 className="text-[clamp(1.2rem,2vw,1.6rem)] font-[460] leading-tight text-tone">{project.title}</h3>
+          <p className="mt-1 text-[0.8125rem] tabular-nums text-tone-mute" aria-live="polite">
+            {fill(t.ui.imageOf, shown + 1, images.length)}
+          </p>
         </div>
+        <button type="button" onClick={onClose} className="btn btn--solid min-h-10 shrink-0 px-4 text-[0.875rem]">
+          {t.ui.close}
+        </button>
+      </div>
 
-        {images.images.length > 1 && (
-          <div className="absolute top-3 right-3 z-20 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="relative min-h-0 flex-1">
+        <Image
+          key={images[shown]}
+          src={images[shown]}
+          alt={`${project.title} — ${fill(t.ui.imageOf, shown + 1, images.length)}`}
+          fill
+          sizes="100vw"
+          className="object-contain px-16 md:px-24"
+        />
+        {images.length > 1 ? (
+          <>
             <button
-              onClick={(e) => { e.stopPropagation(); setActiveImg((prev) => (prev === 0 ? images.images.length - 1 : prev - 1)); }}
-              className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white hover:bg-green-500/20 hover:border-green-500 transition-all flex items-center justify-center cursor-pointer"
-              aria-label="Previous image"
+              type="button"
+              onClick={() => step(-1)}
+              aria-label={t.ui.previous}
+              className="btn btn--outline absolute left-3 top-1/2 size-12 -translate-y-1/2 bg-tone-ground/80 px-0 md:left-8 md:size-14"
             >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
+              <ArrowIcon className="size-5 rotate-180" />
             </button>
             <button
-              onClick={(e) => { e.stopPropagation(); setActiveImg((prev) => (prev === images.images.length - 1 ? 0 : prev + 1)); }}
-              className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white hover:bg-green-500/20 hover:border-green-500 transition-all flex items-center justify-center cursor-pointer"
-              aria-label="Next image"
+              type="button"
+              onClick={() => step(1)}
+              aria-label={t.ui.next}
+              className="btn btn--outline absolute right-3 top-1/2 size-12 -translate-y-1/2 bg-tone-ground/80 px-0 md:right-8 md:size-14"
             >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+              <ArrowIcon className="size-5" />
             </button>
-          </div>
-        )}
+          </>
+        ) : null}
+      </div>
 
-        <div className="relative z-10 h-full flex flex-col justify-end p-6">
-          <h3 className={`font-medium text-white group-hover:text-green-400 transition-colors duration-300 leading-snug mb-2 ${isWide ? "text-lg" : "text-base"}`}>
-            {project.title}
-          </h3>
-          {isWide && (
-            <p className="text-zinc-400 text-sm leading-relaxed mb-3 line-clamp-2">
-              {project.description}
-            </p>
-          )}
-          <div className="flex flex-wrap gap-1.5">
-            {images.tags.map((tag, tagIndex) => (
-              <span
-                key={tagIndex}
-                className="px-2.5 py-0.5 text-[10px] font-mono rounded-full border border-white/[0.08] text-zinc-400 bg-white/[0.03]"
-              >
-                {tag}
-              </span>
-            ))}
+      <p className="mx-auto max-w-[78ch] px-5 pb-6 pt-4 text-center text-[0.9375rem] leading-[1.6] text-tone-soft md:pb-8">
+        {project.description}
+      </p>
+    </div>
+  );
+}
+
+/** A native modal dialog: it traps focus, closes on Escape and keeps the page inert behind it. */
+function Lightbox({ index, onClose }: { index: number | null; onClose: () => void }) {
+  const { t } = useLanguage();
+  const dialog = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const el = dialog.current;
+    if (!el) return;
+    if (index !== null && !el.open) el.showModal();
+    else if (index === null && el.open) el.close();
+  }, [index]);
+
+  return (
+    <dialog
+      ref={dialog}
+      onClose={onClose}
+      onClick={(event) => {
+        if (event.target === dialog.current) onClose();
+      }}
+      aria-label={index === null ? undefined : t.projects.items[index].title}
+      className="on-shade fixed inset-0 m-0 h-[100svh] max-h-none w-screen max-w-none bg-tone-ground/96 p-0 text-tone backdrop:bg-black/70"
+    >
+      {index !== null ? <LightboxBody key={index} index={index} onClose={onClose} /> : null}
+    </dialog>
+  );
+}
+
+/** A panel's hit area and the label mounted on its column; both follow the colonnade as it slides. */
+function Exhibit({
+  index,
+  count,
+  focused,
+  viewport,
+  onOpen,
+}: {
+  index: number;
+  count: number;
+  focused: boolean;
+  viewport: Viewport;
+  onOpen: () => void;
+}) {
+  const { t } = useLanguage();
+  const { progress } = useScrollStage();
+  const project = t.projects.items[index];
+  const { mode, aspect, width, height } = viewport;
+  const panel = panelSize(mode, aspect);
+  const center = useTransform(progress, (p) => pillarX(index, p, count, mode) * width);
+  // The label hangs on its column below the capital, but never runs off a short screen: when the
+  // description would reach the bottom edge it rises over the shaft instead of being cut.
+  const label = useRef<HTMLDivElement>(null);
+  const [labelHeight, setLabelHeight] = useState(0);
+  useLayoutEffect(() => {
+    const el = label.current;
+    if (!el) return;
+    const observer = new ResizeObserver(() => setLabelHeight(el.offsetHeight));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  const panelBottom = (panel.top + panel.height) * height;
+  const labelTop = Math.max(
+    panelBottom + 12,
+    Math.min((mode === "portrait" ? 0.63 : 0.61) * height, height - labelHeight - 16),
+  );
+
+  return (
+    <motion.div className="absolute top-0 h-full" style={{ left: center }}>
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={`${t.ui.viewScreens}: ${project.title}`}
+        className="group absolute -translate-x-1/2"
+        style={{ top: panel.top * height, width: panel.width * width, height: panel.height * height }}
+      >
+        <span className="btn btn--ink absolute bottom-3 left-1/2 min-h-9 -translate-x-1/2 px-4 text-[0.8125rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+          {t.ui.viewScreens}
+          <span className="tabular-nums text-tone-soft">{projectImages[index].length}</span>
+        </span>
+      </button>
+
+      <div
+        ref={label}
+        className={`cartela absolute w-[min(80vw,23rem)] -translate-x-1/2 px-5 py-4 transition-opacity duration-500 md:w-[min(26vw,23rem)] ${
+          focused ? "opacity-100" : "opacity-80"
+        }`}
+        style={{ top: labelTop }}
+      >
+        <h3 className="text-[1.0625rem] font-[480] leading-snug text-ink">{project.title}</h3>
+        <p className="cartela__inv mt-2">{project.tags.join(" · ")}</p>
+        <div
+          className={`grid transition-[grid-template-rows] duration-500 ease-[var(--ease-out-expo)] ${
+            focused ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <p className="pt-3 text-[0.875rem] leading-[1.55] text-ink-soft">{project.description}</p>
           </div>
         </div>
       </div>
@@ -135,246 +206,120 @@ function BentoProjectCard({
   );
 }
 
-function ProjectModal({
-  project,
-  images,
-  index,
-  onClose,
-}: {
-  project: { title: string; description: string; tags: string[] };
-  images: ProjectData;
-  index: number;
-  onClose: () => void;
-}) {
-  const [activeImg, setActiveImg] = useState(0);
+/** The colonnade's controls: exhibits, arrows and the counter, inside the pinned stage. */
+function Colonnade({ onOpen }: { onOpen: (i: number) => void }) {
+  const { t } = useLanguage();
+  const { progress } = useScrollStage();
+  const viewport = useColonnadeViewport();
+  const reduced = usePrefersReducedMotion();
+  const count = t.projects.items.length;
+  const [focus, setFocus] = useState(0);
+  useMotionValueEvent(progress, "change", (p) => setFocus(Math.round(p * (count - 1))));
+  const panel = panelSize(viewport.mode, viewport.aspect);
+  // The room's sign greets the visitor, then steps aside as the colonnade starts to move.
+  const signOpacity = useTransform(progress, [0, 0.07], [1, 0]);
+  // On phones the sign and the counter share the space above the first panel, so the counter takes
+  // over as the sign steps aside; wide screens show both.
+  const counterOpacity = useTransform(progress, [0.075, 0.13], [0, 1]);
+  const portrait = viewport.mode === "portrait";
+  const painting = t.paintings.parthenon;
+
+  const go = (target: number) => goToWork(target, !reduced);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
-      onClick={onClose}
-    >
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+    // The controls come and go with the room's light like the columns they are laid on; bright
+    // labels on dark shade read longer than the hazing stone, so they fade on the square of it.
+    <div className="relative h-full w-full" style={{ opacity: "calc(var(--room-light) * var(--room-light))" }}>
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="glass-card relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl flex flex-col"
-        onClick={(e) => e.stopPropagation()}
+        className="pointer-events-none absolute inset-x-0 top-[max(9svh,5rem)] mx-auto max-w-[90rem] px-5 md:top-[12vh] md:px-10"
+        style={{ opacity: signOpacity }}
+      >
+        <RoomSign
+          id="projects-heading"
+          greek={t.rooms.projects.greek}
+          local={t.projects.title}
+          highlight={t.projects.titleHighlight}
+          note={t.projects.subtitle}
+          noteClassName="max-md:hidden text-tone-soft"
+          className="md:w-[32%]"
+        />
+      </motion.div>
+
+      {t.projects.items.map((project, i) => (
+        <Exhibit
+          key={project.title}
+          index={i}
+          count={count}
+          focused={i === focus}
+          viewport={viewport}
+          onOpen={() => onOpen(i)}
+        />
+      ))}
+
+      <div
+        className="pointer-events-none absolute inset-x-0 flex items-center justify-between px-3 md:px-10"
+        style={{ top: `calc(${(panel.top + panel.height / 2) * viewport.height}px - 1.5rem)` }}
       >
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-[#333] text-white hover:bg-white/20 hover:border-green-500 transition-all duration-300 flex items-center justify-center"
-          aria-label="Close"
+          type="button"
+          onClick={() => go(focus - 1)}
+          disabled={focus === 0}
+          aria-label={t.ui.previousWork}
+          className="btn btn--outline pointer-events-auto size-12 bg-tone-ground/80 px-0 disabled:pointer-events-none disabled:opacity-0 md:size-14"
         >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <ArrowIcon className="size-5 rotate-180" />
         </button>
+        <button
+          type="button"
+          onClick={() => go(focus + 1)}
+          disabled={focus === count - 1}
+          aria-label={t.ui.nextWork}
+          className="btn btn--outline pointer-events-auto size-12 bg-tone-ground/80 px-0 disabled:pointer-events-none disabled:opacity-0 md:size-14"
+        >
+          <ArrowIcon className="size-5" />
+        </button>
+      </div>
 
-        <div className="relative aspect-video overflow-hidden bg-black/30">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeImg}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={images.images[activeImg]}
-                alt={project.title}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 896px"
-              />
-            </motion.div>
-          </AnimatePresence>
+      {/* The counter hangs in the focused work's shaft of light, on a slip of shade so it stays legible. */}
+      <motion.p
+        className="absolute inset-x-0 text-center"
+        style={{ top: `calc(${panel.top * viewport.height}px - 2.5rem)`, opacity: portrait ? counterOpacity : 1 }}
+        aria-live="polite"
+      >
+        <span className="inline-block bg-tone-ground/85 px-3 py-1 text-[0.8125rem] tabular-nums tracking-[0.12em] text-tone-soft">
+          {fill(t.ui.workOf, focus + 1, count)}
+        </span>
+      </motion.p>
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-
-          {images.images.length > 1 && (
-            <div className="absolute inset-0 flex items-center justify-between px-4">
-              <button
-                onClick={() =>
-                  setActiveImg((prev) =>
-                    prev === 0 ? images.images.length - 1 : prev - 1,
-                  )
-                }
-                className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-sm border border-[#333] text-white hover:bg-white/20 hover:border-green-500 transition-all duration-300 flex items-center justify-center"
-                aria-label="Previous image"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <button
-                onClick={() =>
-                  setActiveImg((prev) =>
-                    prev === images.images.length - 1 ? 0 : prev + 1,
-                  )
-                }
-                className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-sm border border-[#333] text-white hover:bg-white/20 hover:border-green-500 transition-all duration-300 flex items-center justify-center"
-                aria-label="Next image"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </div>
-          )}
-
-          <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 text-xs font-mono rounded-full bg-black backdrop-blur-sm border border-[#333] text-green-400">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          </div>
-        </div>
-
-        <div className="p-6 md:p-8 overflow-y-auto">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            {project.title}
-          </h3>
-          <p className="text-zinc-400 text-base leading-relaxed mb-6">
-            {project.description}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {images.tags.map((tag, tagIndex) => (
-              <span
-                key={tagIndex}
-                className="px-4 py-1.5 text-sm font-mono rounded-full border border-white/[0.08] text-zinc-400 hover:border-green-500 hover:text-green-400 transition-colors duration-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
+      {/* The view through the columns is a painting too, and is credited like the others. */}
+      <motion.p
+        style={{ opacity: counterOpacity }}
+        className="absolute right-5 top-[4.75rem] max-w-[30ch] text-right text-[0.6875rem] leading-[1.45] text-tone-soft md:right-10 md:top-[5.5rem] md:max-w-[40ch] md:text-[0.75rem]"
+      >
+        {painting.artist}, <cite className="not-italic text-tone">{painting.title}</cite>, {painting.date} ·{" "}
+        {painting.collection}
+      </motion.p>
+    </div>
   );
 }
 
 export default function Projects() {
   const { t } = useLanguage();
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedProject(null);
-    };
-    if (selectedProject !== null) {
-      document.body.style.overflow = "hidden";
-      window.addEventListener("keydown", handleEscape);
-    }
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleEscape);
-    };
-  }, [selectedProject]);
+  const [open, setOpen] = useState<number | null>(null);
+  const count = t.projects.items.length;
 
   return (
-    <section id="projects" className="relative py-24 md:py-32 bg-transparent overflow-hidden" aria-labelledby="projects-heading">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,_rgba(34,197,94,0.05)_0%,_transparent_50%)]" />
-
-      <div className="relative max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          <h2 id="projects-heading" className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
-            {t.projects.title}{" "}
-            <span className="text-green-500 italic">
-              {t.projects.titleHighlight}
-            </span>
-          </h2>
-          <p className="text-zinc-500 text-lg">{t.projects.subtitle}</p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-[17.5rem] md:auto-rows-auto md:grid-rows-[23.75rem_22.5rem]">
-          <div className="md:col-span-7 h-full">
-            <BentoProjectCard
-              project={t.projects.items[0]}
-              images={projectImages[0]}
-              index={0}
-              onProjectClick={() => setSelectedProject(0)}
-              isWide
-            />
-          </div>
-          <div className="md:col-span-5 h-full">
-            <BentoProjectCard
-              project={t.projects.items[1]}
-              images={projectImages[1]}
-              index={1}
-              onProjectClick={() => setSelectedProject(1)}
-            />
-          </div>
-          <div className="md:col-span-5 h-full">
-            <BentoProjectCard
-              project={t.projects.items[2]}
-              images={projectImages[2]}
-              index={2}
-              onProjectClick={() => setSelectedProject(2)}
-            />
-          </div>
-          <div className="md:col-span-7 h-full">
-            <BentoProjectCard
-              project={t.projects.items[3]}
-              images={projectImages[3]}
-              index={3}
-              onProjectClick={() => setSelectedProject(3)}
-              isWide
-            />
-          </div>
-        </div>
+    <section id="projects" data-page-section data-guide-hidden aria-labelledby="projects-heading" className="relative">
+      {/* The colonnade itself is drawn in the gallery canvas, in the shade of a portico that opens onto
+          Church's Parthenon (PorticoView, beneath the canvas); this pinned stage drives both and carries
+          the controls, so the carousel starts to move as soon as the room arrives. */}
+      <div data-room="works" data-portico className="on-shade">
+        <ScrollStage height={`${100 + (count - 1) * 70}svh`}>
+          <Colonnade onOpen={setOpen} />
+        </ScrollStage>
       </div>
 
-      <AnimatePresence>
-        {selectedProject !== null && (
-          <ProjectModal
-            project={t.projects.items[selectedProject]}
-            images={projectImages[selectedProject]}
-            index={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
-      </AnimatePresence>
+      <Lightbox index={open} onClose={() => setOpen(null)} />
     </section>
   );
 }

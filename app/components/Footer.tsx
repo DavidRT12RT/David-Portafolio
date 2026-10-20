@@ -1,6 +1,12 @@
 "use client";
 
 import { useLanguage } from "@/app/context/LanguageContext";
+import { Signature } from "@/components/ui/signature";
+import { CinematicText } from "@/components/ui/CinematicText";
+import RoomSign from "./RoomSign";
+import FigureFallback from "./FigureFallback";
+import FigureCaption from "./FigureCaption";
+import { GitHubIcon, LinkedInIcon, MailIcon } from "./icons";
 
 const skillTags = [
   "React",
@@ -18,72 +24,86 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="relative bg-transparent overflow-hidden" role="contentinfo" aria-labelledby="footer-cta">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(34,197,94,0.04)_0%,_transparent_50%)]" />
+    <footer
+      id="contact"
+      data-room="apollo"
+      data-page-section
+      data-guide-side="right"
+      data-room-title={t.nav.contact}
+      className="relative"
+      aria-labelledby="footer-cta"
+    >
+      <FigureFallback figure="apollo" side="right" />
+      <FigureCaption figure="apollo" />
+      <div className="room-curtain mx-auto max-w-[90rem] px-5 md:px-10 md:pt-[26vh]">
+        <div className="md:w-[52%]">
+          <RoomSign
+            id="footer-cta"
+            greek={t.rooms.contact.greek}
+            local={
+              <CinematicText as="span" delay={0.1} stagger={0.06} blur={10}>
+                {`${t.footer.cta1} ${t.footer.cta2}`}
+              </CinematicText>
+            }
+            highlight={t.footer.ctaHighlight}
+          />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-10">
-        <h2 id="footer-cta" className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight text-white mb-10">
-          {t.footer.cta1}
-          <br />
-          {t.footer.cta2}{" "}
-          <span className="text-green-500 italic">{t.footer.ctaHighlight}</span>
-        </h2>
-
-        <div className="flex flex-wrap gap-3 mb-16">
-          {skillTags.map((tag) => (
-            <span
-              key={tag}
-              className="px-4 py-1.5 text-sm font-mono rounded-full border border-[#333] text-zinc-400 hover:border-zinc-500 hover:text-white transition-colors duration-300"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="border-t border-white/[0.06] pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-bold text-white">
-              David <span className="text-green-500">Arcos</span> Melgarejo
-            </span>
-            <span className="text-zinc-600 text-xs">
-              &copy; {new Date().getFullYear()} {t.footer.rights}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-5">
-            <a
-              href="mailto:davidarcosm@hotmail.com"
-              className="text-zinc-600 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm"
-              aria-label={t.footer.emailLabel}
-            >
-              <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              <span className="hidden sm:inline">davidarcosm@hotmail.com</span>
+          <div className="mt-12 flex flex-wrap items-center gap-3">
+            <a href="mailto:davidarcosm@hotmail.com" className="btn btn--solid">
+              <MailIcon className="size-4" />
+              {t.footer.emailLabel}
             </a>
             <a
               href="https://github.com/DavidRT12RT"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-600 hover:text-white transition-colors duration-300"
-              aria-label="GitHub"
+              className="btn btn--outline"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
+              <GitHubIcon className="size-4" />
+              GitHub
             </a>
             <a
               href="https://www.linkedin.com/in/david-arcos-melgarejo-722008322/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-600 hover:text-white transition-colors duration-300"
-              aria-label="LinkedIn"
+              className="btn btn--outline"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
+              <LinkedInIcon className="size-4" />
+              LinkedIn
             </a>
           </div>
+
+          <ul className="mt-10 flex flex-wrap gap-x-3 gap-y-1 text-[0.875rem] text-tone-mute">
+            {skillTags.map((tag, i) => (
+              <li key={tag} className="flex items-center gap-3">
+                {i > 0 ? <span aria-hidden="true" className="text-tone-line">/</span> : null}
+                {tag}
+              </li>
+            ))}
+          </ul>
+
+          <figure className="mt-[12vh]">
+            <Signature
+              text="ΔΑΥΙΔ ΕΠΟΙΕΙ"
+              label="ΔΑΥΙΔ ΕΠΟΙΕΙ"
+              fontUrl="/fonts/commissioner-signature.ttf"
+              fontSize={52}
+              color="var(--tone-strong)"
+              className="text-tone"
+            />
+            <figcaption className="mt-3 max-w-[40ch] text-[0.875rem] leading-[1.5] text-tone-mute">
+              {t.ui.signatureGloss}
+            </figcaption>
+          </figure>
+        </div>
+
+        {/* The credits sit on their own strip of wall, clear of Apollo's base. */}
+        <div className="relative mt-[10vh] flex flex-col gap-1.5 border-t hairline bg-tone-ground py-6 text-[0.8125rem] text-tone-mute">
+          <p>
+            <span className="text-tone-soft">David Arcos Melgarejo</span> &copy; {new Date().getFullYear()}{" "}
+            {t.footer.rights}
+          </p>
+          <p>{t.ui.paintingCredit}</p>
         </div>
       </div>
     </footer>

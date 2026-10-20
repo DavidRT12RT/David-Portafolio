@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin: maps of Thomas Cole's The Consummation of Empire (1836, New-York Historical Society, public domain via Wikimedia Commons), 2048 px, WebP lossless, one per channel. Red: relative depth (white = near), estimated locally on 2026-10-19 with Depth Anything V2 Large at 784 and 1036 px, fused, guided-filter upsampled on the painting, near regions dilated. Green: the water (harbour, far sea and the canal under the bridge) and blue: the open sky, segmented on 2026-10-20 with SAM (facebook/sam-vit-large) from box and point prompts, opened, eroded 2 px and feathered (Gaussian 2.5-3 px). Drive the hero's parallax and relighting, the moving water and sun glints, and the drifting clouds.",
+  "createdAt": "2026-10-20T17:12:16.474Z"
+}

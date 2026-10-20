@@ -1,114 +1,136 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { MorphMenu } from "@/components/ui/morph-menu";
+
+const ROOM_IDS = ["about", "experience", "skills", "projects", "contact"] as const;
+/** Rooms the signage watches; the rooms without an entry of their own leave nothing reading "here" in them. */
+const WATCHED = [...ROOM_IDS, "method", "oracle", "giants"];
+
+/** Which room the visitor is standing in, for the signage's "you are here". */
+function useCurrentRoom() {
+  const [current, setCurrent] = useState<string | null>(null);
+  useEffect(() => {
+    const rooms = WATCHED.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setCurrent(entry.target.id);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    rooms.forEach((room) => observer.observe(room));
+    const onTop = () => window.scrollY < window.innerHeight * 0.5 && setCurrent(null);
+    window.addEventListener("scroll", onTop, { passive: true });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onTop);
+    };
+  }, []);
+  return current;
+}
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
-  const [isOpen, setIsOpen] = useState(false);
+  const current = useCurrentRoom();
+  const [scrolled, setScrolled] = useState(false);
 
-  const navItems = [
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.experience, href: "#experience" },
-    { label: t.nav.skills, href: "#skills" },
-    { label: t.nav.projects, href: "#projects" },
-    { label: t.nav.contact, href: "#contact" },
-  ];
+  useEffect(() => {
+    // Clear over the painting, so its sky runs to the top of the screen; a strip of sky once past it.
+    const onScroll = () => {
+      const hero = document.getElementById("top");
+      setScrolled(hero ? hero.getBoundingClientRect().bottom <= 64 : window.scrollY > 24);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  const toggleLanguage = () => {
-    setLanguage(language === "en" ? "es" : "en");
-  };
+  const items = ROOM_IDS.map((id) => ({ id, href: `#${id}`, label: t.nav[id], greek: t.rooms[id].greek }));
+
+  const languageToggle = (
+    <button
+      type="button"
+      onClick={() => setLanguage(language === "en" ? "es" : "en")}
+      aria-label={t.ui.switchLanguage}
+      className="inline-flex h-11 items-center gap-1.5 px-2 text-[0.8125rem] font-medium tracking-[0.12em]"
+    >
+      <span className={language === "es" ? "text-tone" : "text-tone-mute"}>ES</span>
+      <span aria-hidden="true" className="text-tone-line">
+        /
+      </span>
+      <span className={language === "en" ? "text-tone" : "text-tone-mute"}>EN</span>
+    </button>
+  );
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/50 border-b border-white/[0.06]" aria-label="Main navigation">
+    <nav
+      aria-label={t.ui.navLabel}
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-500 ${
+        scrolled ? "border-b border-tone-line bg-tone-ground/92" : "border-b border-transparent"
+      }`}
+    >
       <a
         href="#main-content"
-        className="absolute -top-20 left-6 z-[60] px-4 py-2 bg-green-500 text-black rounded-md transition-[top] duration-200 focus:top-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black"
+        className="btn btn--solid absolute -top-20 left-5 z-[60] transition-[top] duration-200 focus:top-3"
       >
-        Skip to main content
+        {t.ui.skip}
       </a>
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-lg font-bold tracking-tight text-white">
-          David <span className="text-green-500">Arcos</span> Melgarejo
+      <div className="mx-auto flex h-16 max-w-[90rem] items-center justify-between gap-6 px-5 md:px-10">
+        <a
+          href="#top"
+          className="whitespace-nowrap text-[0.75rem] font-medium uppercase tracking-[0.08em] text-tone sm:text-[0.8125rem] sm:tracking-[0.18em]"
+        >
+          David Arcos Melgarejo
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm text-zinc-400 hover:text-white hover:text-green-400 transition-colors duration-300 relative group"
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-green-500 group-hover:w-full transition-all duration-300" />
-            </a>
+        <ul className="hidden items-center gap-8 lg:flex">
+          {items.filter((item) => item.id !== "contact").map((item) => (
+            <li key={item.id}>
+              <a
+                href={item.href}
+                aria-current={current === item.id ? "location" : undefined}
+                className={`relative py-2 text-[0.875rem] transition-colors duration-300 hover:text-tone ${
+                  current === item.id ? "text-tone" : "text-tone-soft"
+                }`}
+              >
+                {item.label}
+                <span
+                  aria-hidden="true"
+                  className={`absolute -bottom-0.5 left-0 h-px bg-gold transition-[width] duration-500 ${
+                    current === item.id ? "w-full" : "w-0"
+                  }`}
+                />
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <div className="flex items-center gap-4">
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono rounded-full border border-[#333] text-zinc-400 hover:text-white hover:border-green-500 transition-all duration-300"
-            title={language === "en" ? "Cambiar a Español" : "Switch to English"}
-          >
-            <span className="text-base leading-none" aria-hidden>
-              {language === "en" ? "🇲🇽" : "🇺🇸"}
-            </span>
-            <span>{language === "en" ? "ES" : "EN"}</span>
-          </button>
-
+        <div className="flex items-center gap-2 md:gap-4">
+          {languageToggle}
           <a
             href="#contact"
-            className="hidden md:inline-flex px-5 py-2 text-sm font-mono border border-green-500/30 text-white bg-transparent hover:bg-green-500/10 hover:border-green-500 transition-all duration-300"
+            aria-current={current === "contact" ? "location" : undefined}
+            className={`btn btn--outline hidden min-h-10 md:inline-flex ${current === "contact" ? "border-tone-accent text-tone-accent" : ""}`}
           >
             {t.nav.contact}
           </a>
-
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2"
-            aria-label="Toggle menu"
-          >
-            <div className="w-5 flex flex-col gap-1.5">
-              <span
-                className={`block h-px bg-white transition-all duration-300 ${
-                  isOpen ? "rotate-45 translate-y-[3.5px]" : ""
-                }`}
-              />
-              <span
-                className={`block h-px bg-white transition-all duration-300 ${
-                  isOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
-                }`}
-              />
-            </div>
-          </button>
+          <MorphMenu
+            className="lg:hidden"
+            title={t.ui.menuTitle}
+            triggerLabel={t.ui.openMenu}
+            closeLabel={t.ui.closeMenu}
+            items={items.map((item) => ({
+              id: item.id,
+              href: item.href,
+              title: item.label,
+              description: <span lang="el">{item.greek}</span>,
+            }))}
+          />
         </div>
       </div>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-white/[0.06] bg-black/80 backdrop-blur-xl"
-          >
-            <div className="px-6 py-6 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-zinc-400 hover:text-green-400 transition-colors duration-300 py-2 border-b border-white/[0.06] last:border-0"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 }
