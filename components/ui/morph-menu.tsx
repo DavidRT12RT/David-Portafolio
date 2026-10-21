@@ -85,8 +85,8 @@ export function MorphMenu({
         initial={false}
         animate={{ width, height, transform: `translate3d(${x}px, ${y}px, 0)` }}
         transition={morphTransition}
-        className={`absolute left-0 top-0 overflow-hidden ${
-          open ? "cartela" : "border border-tone-line bg-tone-ground text-tone"
+        className={`absolute left-0 top-0 overflow-hidden transition-[background-color,border-color,box-shadow,color] duration-300 ${
+          open ? "cartela" : "nav-clear__icon text-tone"
         }`}
       >
         <div ref={measureRef} style={{ width: open ? menuWidth : TRIGGER_SIZE }} className={open ? "relative" : "relative h-11"}>

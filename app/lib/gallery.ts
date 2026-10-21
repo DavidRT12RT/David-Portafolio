@@ -22,6 +22,8 @@ export const gallery = {
   /** Set by the canvas so DOM events can request a frame. */
   invalidate: () => {},
   reducedMotion: false,
+  /** How far each painting has dissolved into the ground's haze (0 clear, 1 gone), keyed by its frame. */
+  paintings: new WeakMap<Element, number>(),
 };
 
 export function roomState(id: RoomId): RoomState {

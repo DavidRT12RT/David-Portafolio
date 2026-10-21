@@ -264,10 +264,10 @@ The museum label is the component language of every exhibit.
 The heading of every room: the Greek name as a flared inscription and the local title beneath, in one heading element with a 0.35em gap, optionally followed by a 46ch note in the mute tone.
 
 ### Navigation
-- **Bar:** fixed, 4rem, clear over the first painting so its sky reaches the top; once the hero has passed it takes the tone ground at 92% with a tone-line bottom border (500ms transition).
+- **Bar:** fixed, 4rem, with no ground or hairline of its own anywhere, as over the first painting. Each group of its lettering (the name, the room links, the controls) reads what lies beneath it on its own and takes umber over the sky or marble over a dark painting or floor (500ms), with a soft cushion of that ground behind the letters (text-shadow at 0.2, 0.6 and 1.4em). A painting counts by how much of it still shows through its haze, so the bar turns back to umber as a painting dissolves. Over a flat ground the bar gathers a 5.5rem haze of that same ground, solid to 30% and gone at its foot, so text scrolling beneath fades instead of meeting the lettering; over a painting the haze lifts (0.6s) and the painting runs to the top of the screen.
 - **Links:** 0.875rem in the soft tone; the current room is strong with a 1px gilding underline that grows to full width. The current room carries `aria-current="location"`.
 - **Language toggle:** ES / EN at 0.8125rem and 0.12em; the active language strong, the other mute. Each is a real link to its language's address (`/`, `/en`, with `hreflang`); a click swaps the text in place and moves the address without reloading the rooms.
-- **Mobile:** a square 2.75rem trigger that morphs open into a cartela listing each room with its Greek name.
+- **Mobile:** a bare 2.75rem trigger (the icon alone, with the same cushion) that morphs open into a cartela listing each room with its Greek name.
 
 ### Guide Card and Floor Plan
 A 19.6875rem marble card in the bottom corner named by the room: the room's title, its Greek name in deep gold, the slanted transliteration and gloss, then the figure's title, medium, origin and SMK inventory. It hides at the entrance, at the credits, while two rooms share the screen, and over any element marked `data-guide-cover` (every painting stage).

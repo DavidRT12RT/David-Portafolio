@@ -172,6 +172,8 @@ export default function Painting({
       const haze = reduced ? 0 : (shot.haze ?? 0);
       const clearing = renderer ? Math.min(1, Math.max(0, (haze - 0.9) / 0.1)) : haze;
       container.style.opacity = (1 - clearing).toFixed(3);
+      // The navbar reads how much of the painting still shows to pick its lettering's tone.
+      gallery.paintings.set(container, renderer ? haze : 0);
 
       if (renderer && surface) {
         const pointer = gallery.pointer;
@@ -350,7 +352,7 @@ export default function Painting({
   const sizes = `(max-aspect-ratio: ${Math.round(art.aspect * 1000)}/1000) ${Math.ceil(art.aspect * 100 * scale)}vh, ${Math.ceil(100 * scale)}vw`;
 
   return (
-    <div ref={box} aria-hidden="true" className="absolute inset-0 overflow-hidden" style={{ background: art.tone }}>
+    <div ref={box} aria-hidden="true" data-painting className="absolute inset-0 overflow-hidden" style={{ background: art.tone }}>
       <picture>
         <source media="(max-width: 767.98px)" srcSet={phoneSrcSet} sizes={sizes} />
         {/* The canvas reads this exact file as its texture. */}
