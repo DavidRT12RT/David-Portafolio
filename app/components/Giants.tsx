@@ -339,6 +339,7 @@ function Stage({ progress, reduced }: { progress: MotionValue<number>; reduced: 
             <div aria-hidden="true" className="md:w-[54%]">
               <RoomSign
                 id="giants-sign"
+                as="div"
                 greek={t.rooms.giants.greek}
                 local={copy.title}
                 highlight={copy.titleHighlight}
@@ -407,7 +408,7 @@ function Still() {
       </div>
       <div className="mx-auto max-w-[90rem] px-5 pb-16 pt-12 md:px-10">
         <div aria-hidden="true">
-          <RoomSign id="giants-sign" greek={t.rooms.giants.greek} local={copy.title} highlight={copy.titleHighlight} note={copy.subtitle} />
+          <RoomSign id="giants-sign" as="div" greek={t.rooms.giants.greek} local={copy.title} highlight={copy.titleHighlight} note={copy.subtitle} />
         </div>
         <p className="mt-6 max-w-[62ch] text-[1.0625rem] leading-[1.7] text-tone-soft">{copy.intro}</p>
         <ol className="mt-12 grid gap-9 md:grid-cols-2 lg:grid-cols-3">

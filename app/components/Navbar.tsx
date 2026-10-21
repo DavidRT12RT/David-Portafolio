@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useLanguage } from "@/app/context/LanguageContext";
+import { LANGUAGE_PATH, useLanguage } from "@/app/context/LanguageContext";
 import { MorphMenu } from "@/components/ui/morph-menu";
 
 const ROOM_IDS = ["about", "experience", "skills", "projects", "contact"] as const;
@@ -50,19 +50,36 @@ export default function Navbar() {
 
   const items = ROOM_IDS.map((id) => ({ id, href: `#${id}`, label: t.nav[id], greek: t.rooms[id].greek }));
 
-  const languageToggle = (
-    <button
-      type="button"
-      onClick={() => setLanguage(language === "en" ? "es" : "en")}
-      aria-label={t.ui.switchLanguage}
-      className="inline-flex h-11 items-center gap-1.5 px-2 text-[0.8125rem] font-medium tracking-[0.12em]"
+  // Real links to each language's address, so search engines find both; a click swaps the text in place.
+  const languageLink = (lang: "es" | "en", name: string) => (
+    <a
+      href={LANGUAGE_PATH[lang]}
+      hrefLang={lang}
+      lang={lang}
+      aria-current={language === lang ? "true" : undefined}
+      onClick={(event) => {
+        event.preventDefault();
+        if (language !== lang) setLanguage(lang);
+      }}
+      className={`inline-flex h-11 items-center px-1 transition-colors duration-300 hover:text-tone ${language === lang ? "text-tone" : "text-tone-mute"}`}
     >
-      <span className={language === "es" ? "text-tone" : "text-tone-mute"}>ES</span>
+      {lang.toUpperCase()}
+      <span className="sr-only"> — {name}</span>
+    </a>
+  );
+
+  const languageToggle = (
+    <div
+      role="group"
+      aria-label={t.ui.languageLabel}
+      className="inline-flex items-center gap-1 px-1 text-[0.8125rem] font-medium tracking-[0.12em]"
+    >
+      {languageLink("es", "Español")}
       <span aria-hidden="true" className="text-tone-line">
         /
       </span>
-      <span className={language === "en" ? "text-tone" : "text-tone-mute"}>EN</span>
-    </button>
+      {languageLink("en", "English")}
+    </div>
   );
 
   return (

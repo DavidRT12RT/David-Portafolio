@@ -1,5 +1,10 @@
 export const translations = {
   en: {
+    meta: {
+      title: "David Arcos Melgarejo — Full Stack Developer & AI Engineer",
+      description:
+        "David Arcos Melgarejo, Full Stack Developer & AI Engineer in Monterrey, Mexico. AI agents, RAG, FastAPI, React and AWS in real products.",
+    },
     nav: {
       about: "About",
       experience: "Experience",
@@ -176,14 +181,27 @@ export const translations = {
         "Athens struck its silver with Athena's owl, and those coins paid for the fleet and the Parthenon. These are mine: each technology in the metal of its trade, with the works where it has already paid its way.",
       metals: { gold: "gold", silver: "silver", bronze: "bronze", electrum: "electrum" },
       details: {
-        openai: "Agents SDK",
+        openai: "Agents SDK · Realtime",
+        claude: "Anthropic",
+        mcp: "Servers and clients",
+        ollama: "LLaVA",
         yolo: "Object Detection",
+        expo: "EAS",
         laravel: "PHP",
-        amazonwebservices: "Cognito, SES, ECR, S3, RDS",
+        go: "Wails",
+        whatsapp: "Cloud API · Evolution API",
         githubactions: "CI/CD",
+        postgresql: "pgvector",
       },
       inWorks: "In the works",
+      services: "Services",
       also: "Also",
+      extra: {
+        ai: ["LangGraph", "LiteLLM", "scikit-learn", "pandas"],
+        frontend: ["React Router", "Tiptap", "React Flow", "Recharts", "dnd-kit"],
+        backend: ["WebSockets & SSE", "Pydantic", "Alembic", "MQTT", "Twilio", "SendGrid"],
+        cloud: ["Nginx", "Caddy", "GitLab CI", "Playwright", "Vitest", "pytest"],
+      },
     },
     projects: {
       title: "Selected",
@@ -296,33 +314,6 @@ export const translations = {
           detail: "The whole sanctuary",
         },
       ],
-      listLead: "Four capabilities, each one running in a real project.",
-      capabilities: [
-        {
-          name: "Multi-agent orchestration",
-          description:
-            "Specialised domain agents that hand work to one another, with guardrails, vector-store RAG and real-time streamed answers.",
-          project: 0,
-        },
-        {
-          name: "RAG and knowledge agents",
-          description:
-            "Kappi, an educational agent that answers from vector stores, with multimodal capabilities and agent handoffs, used by several institutions.",
-          project: 1,
-        },
-        {
-          name: "Agents in CRM and ERP",
-          description: "Multi-agent architectures inside a management suite, with WhatsApp API integration and lead pipelines.",
-          project: 2,
-        },
-        {
-          name: "Computer vision",
-          description: "Real-time polyp detection with YOLO during colonoscopies, with LLM-based analysis summaries.",
-          project: 3,
-        },
-      ],
-      runningIn: "Running in",
-      seeWork: "See the work",
     },
     contact: {
       title: "How I",
@@ -437,12 +428,6 @@ export const translations = {
     },
     figures: {
       credit: "3D scan: SMK, Statens Museum for Kunst · Public domain",
-      athena: {
-        title: "Athena Parthenos (head)",
-        medium: "Plaster cast · 80.5 × 58 × 48 cm",
-        origin: "Greek original, c. 440 BC. Hellenistic copy from Pergamon, 200–150 BC.",
-        inventory: "KAS 2272",
-      },
       plato: {
         title: "Plato (427–347 BC)",
         medium: "Plaster cast · 49 cm",
@@ -475,7 +460,6 @@ export const translations = {
       closeMenu: "Close menu",
       menuTitle: "Rooms",
       languageLabel: "Language",
-      switchLanguage: "Cambiar a Español",
       viewScreens: "View screenshots",
       close: "Close",
       previous: "Previous image",
@@ -492,6 +476,11 @@ export const translations = {
     },
   },
   es: {
+    meta: {
+      title: "David Arcos Melgarejo — Full Stack Developer & AI Engineer",
+      description:
+        "David Arcos Melgarejo, Full Stack Developer & AI Engineer en Monterrey, México. Agentes de IA, RAG, FastAPI, React y AWS en productos reales.",
+    },
     nav: {
       about: "Acerca",
       experience: "Experiencia",
@@ -668,14 +657,27 @@ export const translations = {
         "Atenas acuñaba su plata con la lechuza de Atenea, y esas monedas pagaron la flota y el Partenón. Estas son las mías: cada tecnología en el metal de su oficio, con las obras donde ya ha pagado su parte.",
       metals: { gold: "oro", silver: "plata", bronze: "bronce", electrum: "electro" },
       details: {
-        openai: "Agents SDK",
+        openai: "Agents SDK · Realtime",
+        claude: "Anthropic",
+        mcp: "Servidores y clientes",
+        ollama: "LLaVA",
         yolo: "Detección de Objetos",
+        expo: "EAS",
         laravel: "PHP",
-        amazonwebservices: "Cognito, SES, ECR, S3, RDS",
+        go: "Wails",
+        whatsapp: "Cloud API · Evolution API",
         githubactions: "CI/CD",
+        postgresql: "pgvector",
       },
       inWorks: "En las obras",
+      services: "Servicios",
       also: "También",
+      extra: {
+        ai: ["LangGraph", "LiteLLM", "scikit-learn", "pandas"],
+        frontend: ["React Router", "Tiptap", "React Flow", "Recharts", "dnd-kit"],
+        backend: ["WebSockets y SSE", "Pydantic", "Alembic", "MQTT", "Twilio", "SendGrid"],
+        cloud: ["Nginx", "Caddy", "GitLab CI", "Playwright", "Vitest", "pytest"],
+      },
     },
     projects: {
       title: "Proyectos",
@@ -794,33 +796,6 @@ export const translations = {
           detail: "El santuario entero",
         },
       ],
-      listLead: "Cuatro capacidades, cada una funcionando en un proyecto real.",
-      capabilities: [
-        {
-          name: "Orquestación multi-agente",
-          description:
-            "Agentes de dominio especializados que se pasan el trabajo con handoffs, con guardrails, RAG con vector stores y respuestas en streaming en tiempo real.",
-          project: 0,
-        },
-        {
-          name: "RAG y agentes de conocimiento",
-          description:
-            "Kappi, un agente educativo que responde desde vector stores, con capacidades multimodales y handoffs, usado por múltiples instituciones.",
-          project: 1,
-        },
-        {
-          name: "Agentes en CRM y ERP",
-          description: "Arquitecturas multi-agente dentro de una suite de gestión, con integración de API WhatsApp y pipelines de leads.",
-          project: 2,
-        },
-        {
-          name: "Visión por computadora",
-          description: "Detección de pólipos en tiempo real con YOLO durante colonoscopías, con resúmenes de análisis basados en LLM.",
-          project: 3,
-        },
-      ],
-      runningIn: "En producción en",
-      seeWork: "Ver la obra",
     },
     contact: {
       title: "Cómo",
@@ -935,12 +910,6 @@ export const translations = {
     },
     figures: {
       credit: "Escaneo 3D: SMK, Statens Museum for Kunst · Dominio público",
-      athena: {
-        title: "Atenea Partenos (cabeza)",
-        medium: "Vaciado en yeso · 80,5 × 58 × 48 cm",
-        origin: "Original griego, c. 440 a. C. Copia helenística de Pérgamo, 200–150 a. C.",
-        inventory: "KAS 2272",
-      },
       plato: {
         title: "Platón (427–347 a. C.)",
         medium: "Vaciado en yeso · 49 cm",
@@ -973,7 +942,6 @@ export const translations = {
       closeMenu: "Cerrar menú",
       menuTitle: "Salas",
       languageLabel: "Idioma",
-      switchLanguage: "Switch to English",
       viewScreens: "Ver capturas",
       close: "Cerrar",
       previous: "Imagen anterior",

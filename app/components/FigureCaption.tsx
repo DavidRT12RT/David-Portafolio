@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/app/context/LanguageContext";
 
-type FigureKey = "plato" | "homer" | "discobolus" | "athena" | "apollo";
+type FigureKey = "plato" | "homer" | "discobolus" | "apollo";
 
 /**
  * On phones the figure stands alone above its room, where the desktop guide does not reach: this

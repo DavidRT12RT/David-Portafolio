@@ -168,6 +168,7 @@ function MethodStage({ progress, reduced, stage }: { progress: MotionValue<numbe
               >
                 <RoomSign
                   id="method-sign"
+                  as="div"
                   greek={t.rooms.method.greek}
                   local={t.contact.title}
                   highlight={t.contact.titleHighlight}
@@ -231,6 +232,7 @@ function MethodStill() {
         <div aria-hidden="true">
           <RoomSign
             id="method-sign"
+            as="div"
             greek={t.rooms.method.greek}
             local={t.contact.title}
             highlight={t.contact.titleHighlight}

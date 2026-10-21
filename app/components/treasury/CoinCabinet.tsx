@@ -3,7 +3,7 @@
 import { Component, useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { roomState } from "@/app/lib/gallery";
+import { roomState, type RoomId } from "@/app/lib/gallery";
 import { COINS, METALS, type Coin } from "./coins";
 import { edgeMaterial, faceTextures, flan, hash, seeded, strike, type Struck } from "./mint";
 
@@ -35,8 +35,8 @@ interface Piece {
 const textureSize = (r: number, dpr: number) => Math.min(512, Math.max(192, Math.ceil((2 * r * dpr * 1.25) / 32) * 32));
 
 /**
- * What the metal sees around it: the case's dark interior, the lamp over the glass a little toward the
- * visitor, the lit room behind them that the flat of each coin mirrors, and a cool window far to one side.
+ * What the metal sees around it in the sunlit room: walls in half shade, the bright sky overhead, the
+ * lit room behind the visitor that the flat of each coin mirrors, and the sun low on the right.
  */
 function vitrineEnvironment(renderer: THREE.WebGLRenderer) {
   const scene = new THREE.Scene();
@@ -50,11 +50,11 @@ function vitrineEnvironment(renderer: THREE.WebGLRenderer) {
     scene.add(mesh);
   };
   scene.add(
-    new THREE.Mesh(new THREE.SphereGeometry(10, 32, 16), new THREE.MeshBasicMaterial({ color: "#1b110b", side: THREE.BackSide })),
+    new THREE.Mesh(new THREE.SphereGeometry(10, 32, 16), new THREE.MeshBasicMaterial({ color: "#5a4c3f", side: THREE.BackSide })),
   );
-  panel("#ffdcae", 7, 7, 2.4, [0, 6, 3]);
-  panel("#c8bfb4", 1.3, 18, 10, [0, 0.5, 9]);
-  panel("#cfd8e0", 1.6, 2, 4, [-8, 2, 1]);
+  panel("#f4efe8", 3.2, 10, 3, [0, 6, 2]);
+  panel("#ebe5dd", 1.15, 18, 10, [0, 0.5, 9]);
+  panel("#ffe9c8", 5, 2.5, 2.5, [7, 4, 3]);
   const pmrem = new THREE.PMREMGenerator(renderer);
   const target = pmrem.fromScene(scene, 0.03);
   pmrem.dispose();
@@ -94,6 +94,8 @@ class Vitrine {
   private readonly at = { x: 0, y: 0, placed: false };
   private readonly pointer = { x: 0, y: 0, active: false };
   private readonly environment: THREE.WebGLRenderTarget;
+  /** The room whose light the lamp follows: the one the vitrine stands in. */
+  private readonly room: RoomId;
   private cancelled = false;
   private timer = 0;
 
@@ -105,6 +107,7 @@ class Vitrine {
     private readonly invalidate: () => void,
   ) {
     this.environment = vitrineEnvironment(gl);
+    this.room = (vitrine.closest<HTMLElement>("[data-room]")?.dataset.room ?? "discobolus") as RoomId;
     const top = new THREE.DirectionalLight("#fff0dc", 0.55);
     top.position.set(0.25, 1, 0.7);
     this.root.add(this.lamp, top);
@@ -235,8 +238,8 @@ class Vitrine {
     const hang = window.innerWidth < 768 ? LAMP_HEIGHT.phone : LAMP_HEIGHT.desktop;
     const { pointer, at, reduced } = this;
 
-    // The lamp: held over the tray by the visitor's pointer, or hanging from the room's ceiling so the
-    // coins pass under it as the visitor walks by. Kept still where motion is unwelcome.
+    // The light: the sun the visitor's pointer moves, as it moves it for the figures, or resting high on
+    // the right so the coins pass under it as the visitor walks by. Kept still where motion is unwelcome.
     let tx: number;
     let ty: number;
     if (reduced) {
@@ -246,8 +249,8 @@ class Vitrine {
       tx = pointer.x - box.left;
       ty = pointer.y - box.top;
     } else {
-      tx = window.innerWidth * 0.5 - box.left;
-      ty = window.innerHeight * 0.3 - box.top;
+      tx = window.innerWidth * 0.72 - box.left;
+      ty = window.innerHeight * 0.2 - box.top;
     }
     if (!at.placed || reduced) {
       at.x = tx;
@@ -258,7 +261,7 @@ class Vitrine {
       at.y = THREE.MathUtils.damp(at.y, ty, 6, dt);
     }
     let moving = Math.abs(at.x - tx) > 0.5 || Math.abs(at.y - ty) > 0.5;
-    const roomLight = roomState("treasury").light;
+    const roomLight = roomState(this.room).light;
     const lx = at.x - width / 2;
     const ly = height / 2 - at.y;
     this.lamp.position.set(lx, ly, hang);
@@ -294,7 +297,7 @@ class Vitrine {
       const reach = z / Math.max(40, hang - z);
       piece.shadow.position.set(wx + (wx - lx) * reach, wy + (wy - ly) * reach, 0);
       piece.shadow.scale.setScalar(piece.r * (1.04 + 0.22 * piece.lift));
-      piece.shadow.material.opacity = piece.mesh ? (0.6 - 0.22 * piece.lift) * (0.4 + 0.6 * roomLight) : 0;
+      piece.shadow.material.opacity = piece.mesh ? (0.34 - 0.12 * piece.lift) * (0.4 + 0.6 * roomLight) : 0;
     }
     return moving;
   }

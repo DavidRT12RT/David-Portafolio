@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
-
-const baseUrl = "https://davidarcosmelgarejo.com";
+import { SITE_URL } from "@/app/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: [],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

@@ -340,24 +340,32 @@ export default function Painting({
   }, [art, progress, reduced, zoomMax]);
 
   const srcSet = art.widths.map((w) => `/paintings/${art.slug}-${w}.webp ${w}w`).join(", ");
+  // Phones never draw more than PHONE_TEXTURE pixels of a painting, so they never fetch a larger file.
+  const phoneSrcSet = art.widths
+    .filter((w) => w <= PHONE_TEXTURE)
+    .map((w) => `/paintings/${art.slug}-${w}.webp ${w}w`)
+    .join(", ");
   // Cover fits by height on screens narrower than the painting; the camera adds its margin and zoom.
   const scale = OVERSCAN * zoomMax;
   const sizes = `(max-aspect-ratio: ${Math.round(art.aspect * 1000)}/1000) ${Math.ceil(art.aspect * 100 * scale)}vh, ${Math.ceil(100 * scale)}vw`;
 
   return (
     <div ref={box} aria-hidden="true" className="absolute inset-0 overflow-hidden" style={{ background: art.tone }}>
-      {/* eslint-disable-next-line @next/next/no-img-element -- the canvas reads this exact file as its texture */}
-      <img
-        ref={img}
-        src={`/paintings/${art.slug}-${art.widths[1]}.webp`}
-        srcSet={srcSet}
-        sizes={sizes}
-        alt=""
-        fetchPriority={priority ? "high" : "auto"}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        className="absolute left-0 top-0 h-full w-full max-w-none origin-top-left object-cover"
-      />
+      <picture>
+        <source media="(max-width: 767.98px)" srcSet={phoneSrcSet} sizes={sizes} />
+        {/* The canvas reads this exact file as its texture. */}
+        <img
+          ref={img}
+          src={`/paintings/${art.slug}-${art.widths[1]}.webp`}
+          srcSet={srcSet}
+          sizes={sizes}
+          alt=""
+          fetchPriority={priority ? "high" : "auto"}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          className="absolute left-0 top-0 h-full w-full max-w-none origin-top-left object-cover"
+        />
+      </picture>
     </div>
   );
 }

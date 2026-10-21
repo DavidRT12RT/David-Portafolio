@@ -17,7 +17,8 @@ export default function RoomSign({
   local: ReactNode;
   highlight?: ReactNode;
   note?: ReactNode;
-  as?: "h2" | "h3";
+  /** A heading by default; `div` where the room already has its heading and the sign is only shown. */
+  as?: "h2" | "h3" | "div";
   className?: string;
   noteClassName?: string;
 }) {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type FigureKey = "plato" | "homer" | "discobolus" | "athena" | "apollo";
+type FigureKey = "plato" | "homer" | "discobolus" | "apollo";
 
 /**
  * SMK's own photograph of the cast, shown only when the browser cannot draw the gallery in WebGL,

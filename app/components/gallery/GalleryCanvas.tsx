@@ -544,13 +544,10 @@ const modelPath = (config: FigureConfig) =>
 function Figure({ config }: { config: FigureConfig }) {
   const gltf = useGLTF(modelPath(config), false);
   const gl = useThree((s) => s.gl);
-  const camera = useThree((s) => s.camera) as THREE.PerspectiveCamera;
-  const size = useThree((s) => s.size);
   const outer = useRef<THREE.Group>(null);
   const inner = useRef<THREE.Group>(null);
   const plinth = useRef<THREE.Mesh>(null);
   const yaw = useRef(config.yaw[0]);
-  const projected = useMemo(() => new THREE.Vector3(), []);
 
   const marble = useMemo(() => {
     const material = new THREE.MeshStandardMaterial({ color: MARBLE, roughness: 0.68, metalness: 0 });
@@ -614,20 +611,6 @@ function Figure({ config }: { config: FigureConfig }) {
       plinth.current.position.y = -frame.plinth / 2 - 0.002;
     }
 
-    if (config.anchors) {
-      turn.updateMatrixWorld(true);
-      for (const [name, [ax, ay, az]] of Object.entries(config.anchors)) {
-        projected.set(ax, ay, az);
-        turn.localToWorld(projected);
-        projected.project(camera);
-        gallery.anchors[`${config.id}.${name}`] = {
-          x: (projected.x * 0.5 + 0.5) * size.width,
-          y: (-projected.y * 0.5 + 0.5) * size.height,
-          visible: frame.light > 0.05,
-        };
-      }
-      gallery.anchorListeners.forEach((listener) => listener());
-    }
   });
 
   return (

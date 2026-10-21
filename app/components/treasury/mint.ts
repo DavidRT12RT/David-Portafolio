@@ -112,7 +112,7 @@ export function strike(coin: Coin, metal: Metal, font: string, size: number): St
 
   // The legend, struck along the upper arc inside the beads, reading left to right.
   const letters = [...coin.legend];
-  const fontSize = size * (letters.length > 11 ? 0.06 : 0.07);
+  const fontSize = size * (letters.length > 16 ? 0.052 : letters.length > 11 ? 0.06 : 0.07);
   g.font = `600 ${fontSize}px ${font}`;
   g.fillStyle = grey(0.42);
   g.textAlign = "center";
@@ -142,7 +142,10 @@ export function strike(coin: Coin, metal: Metal, font: string, size: number): St
     g.fill(new Path2D(coin.logo));
     g.restore();
   } else {
+    // As large as the field allows: a short name fills it, a long one shrinks to fit inside the beads.
     g.font = `600 ${size * 0.2}px ${font}`;
+    const fit = Math.min(1, (size * 0.58) / g.measureText(coin.name).width);
+    g.font = `600 ${size * 0.2 * fit}px ${font}`;
     g.fillText(coin.name, R, R + size * 0.05);
   }
 
@@ -191,13 +194,13 @@ export function strike(coin: Coin, metal: Metal, font: string, size: number): St
       const shine = high * high * (3 - 2 * high);
       const dull = 1 - 0.55 * hollow;
       for (let k = 0; k < 3; k++) {
-        color.data.data[i * 4 + k] = Math.round((patina[k] + (polished[k] - patina[k]) * (0.35 + 0.65 * shine)) * dull);
+        color.data.data[i * 4 + k] = Math.round((patina[k] + (polished[k] - patina[k]) * (0.55 + 0.45 * shine)) * dull);
       }
       color.data.data[i * 4 + 3] = 255;
       if ((x & 1) === 0 && (y & 1) === 0 && x >> 1 < half && y >> 1 < half) {
         // Roughness in green, as the material reads it: satin field, polished relief, dull hollows.
         const j = ((y >> 1) * half + (x >> 1)) * 4;
-        const roughness = 0.46 - 0.2 * shine + 0.2 * hollow;
+        const roughness = 0.4 - 0.18 * shine + 0.2 * hollow;
         rough.data.data[j] = 0;
         rough.data.data[j + 1] = Math.round(Math.min(1, Math.max(0, roughness)) * 255);
         rough.data.data[j + 2] = 255;

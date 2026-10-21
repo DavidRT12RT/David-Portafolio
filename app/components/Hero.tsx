@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, type CSSProperties } from "react";
 import { motion, useTransform, type MotionValue } from "motion/react";
 import { useLanguage } from "@/app/context/LanguageContext";
 import { ScrollStage } from "@/components/ui/ScrollStage";
@@ -12,7 +12,6 @@ import type { LayerMotion, Plume } from "./painting/painting-renderer";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "./icons";
 
 const NAME_LINES = ["David Arcos", "Melgarejo"];
-const EASE = [0.16, 1, 0.3, 1] as const;
 /** Points of the painting (0..1 from the top left): Athena on her column, and the harbour's far end. */
 const ATHENA_X = 0.715;
 const HARBOUR: [number, number] = [0.6, 0.48];
@@ -141,16 +140,11 @@ function HeroStage({ progress, reduced }: { progress: MotionValue<number>; reduc
     }
   }, []);
 
+  // The entrance runs in CSS, so the name arrives with the first paint rather than after the scripts.
   const lines = NAME_LINES.map((line, i) => (
-    <motion.span
-      key={line}
-      className="block"
-      initial={reduced ? false : { opacity: 0, y: "0.32em", filter: "blur(10px)" }}
-      animate={{ opacity: 1, y: "0em", filter: "blur(0px)" }}
-      transition={{ duration: 1.4, delay: 0.25 + i * 0.16, ease: EASE }}
-    >
+    <span key={line} className="hero-rise block" style={{ "--delay": `${0.1 + i * 0.16}s` } as CSSProperties}>
       {line}
-    </motion.span>
+    </span>
   ));
 
   return (
@@ -176,33 +170,32 @@ function HeroStage({ progress, reduced }: { progress: MotionValue<number>; reduc
         className="absolute inset-x-0 top-[10svh] px-5 text-center md:top-[13vh]"
       >
         <div ref={name} className="will-change-transform">
-          <h1 id="hero-title" className="hero-name relative" data-reveal>
-            {lines}
-            {/* The same letters again, transparent but for the glint of light that crosses them. */}
-            <motion.span
+          <div className="relative">
+            <h1 id="hero-title" className="hero-name" data-reveal>
+              {lines}
+            </h1>
+            {/* The same letters again, transparent but for the glint of light that crosses them; beside
+                the heading rather than in it, so the name is read once. */}
+            <span
               ref={glint}
               aria-hidden="true"
-              initial={reduced ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.6, delay: 1.4 }}
-              className="hero-name__glint pointer-events-none absolute inset-0"
+              className="hero-name hero-name__glint hero-fade pointer-events-none absolute inset-0"
+              style={{ "--delay": "1.4s", "--duration": "1.6s" } as CSSProperties}
             >
               {NAME_LINES.map((line) => (
                 <span key={line} className="block">
                   {line}
                 </span>
               ))}
-            </motion.span>
-          </h1>
-          <motion.p
+            </span>
+          </div>
+          <p
             data-reveal
-            initial={reduced ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.75, ease: EASE }}
-            className="mt-5 text-[0.75rem] font-medium uppercase tracking-[0.2em] text-gold-ink md:text-[0.8125rem]"
+            className="hero-fade mt-5 text-[0.75rem] font-medium uppercase tracking-[0.2em] text-gold-ink md:text-[0.8125rem]"
+            style={{ "--delay": "0.75s", "--duration": "1.2s" } as CSSProperties}
           >
             {t.hero.badge}
-          </motion.p>
+          </p>
         </div>
       </motion.div>
 
@@ -215,12 +208,7 @@ function HeroStage({ progress, reduced }: { progress: MotionValue<number>; reduc
           data-reveal
           className="mx-auto flex max-w-[90rem] flex-col items-center px-5 pb-[max(1.5rem,5svh)] text-center md:px-10 md:pb-[7vh]"
         >
-          <motion.div
-            initial={reduced ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.9, ease: EASE }}
-            className="flex flex-col items-center"
-          >
+          <div className="hero-lift flex flex-col items-center" style={{ "--delay": "0.9s" } as CSSProperties}>
             <p className="max-w-[44ch] text-[clamp(1.2rem,1.7vw,1.6rem)] font-[380] leading-[1.25] text-tone [font-variation-settings:'FLAR'_70]">
               {t.hero.title1} {t.hero.title2}
             </p>
@@ -263,7 +251,7 @@ function HeroStage({ progress, reduced }: { progress: MotionValue<number>; reduc
                 </a>
               </span>
             </div>
-          </motion.div>
+          </div>
 
           <p className="mt-6 text-[0.75rem] leading-[1.45] text-tone-soft md:absolute md:bottom-[2.25vh] md:right-10 md:mt-0 md:max-w-[40ch] md:text-right">
             {painting.artist}, <cite className="not-italic text-tone">{painting.title}</cite> ({painting.series}),{" "}

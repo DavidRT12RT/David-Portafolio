@@ -9,11 +9,7 @@ import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import Painting, { type Direction, type Shot } from "./painting/Painting";
 import type { Plume } from "./painting/painting-renderer";
 import { ARTWORKS } from "./painting/artworks";
-import { goToWork } from "./gallery/colonnade-layout";
 import RoomSign from "./RoomSign";
-import FigureFallback from "./FigureFallback";
-import FigureCaption from "./FigureCaption";
-import { ArrowIcon } from "./icons";
 
 const ART = ARTWORKS.oracle;
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -88,7 +84,8 @@ const direction: Direction = (p, width, height) => {
       zoom: from.zoom * creep,
       mist: 0.3,
       plumes: [vapourAt(STOPS[index].vapour)],
-      haze: last ? clamp01((local - 0.4) / 0.5) : 0,
+      // The whole recedes until the stage lets go, so the works' portico rises as the haze completes.
+      haze: last ? clamp01((local - 0.45) / 0.55) : 0,
     };
   }
 
@@ -204,6 +201,7 @@ function Stage({ progress, reduced }: { progress: MotionValue<number>; reduced: 
             <div aria-hidden="true" className="md:w-[50%]">
               <RoomSign
                 id="oracle-sign"
+                as="div"
                 greek={t.rooms.oracle.greek}
                 local={copy.title}
                 highlight={copy.titleHighlight}
@@ -273,6 +271,7 @@ function Still() {
         <div aria-hidden="true">
           <RoomSign
             id="oracle-sign"
+            as="div"
             greek={t.rooms.oracle.greek}
             local={copy.title}
             highlight={copy.titleHighlight}
@@ -304,19 +303,9 @@ export default function Oracle() {
   const { t } = useLanguage();
   const reduced = usePrefersReducedMotion();
   const copy = t.oracle;
-  const works = t.projects.items;
 
   return (
-    // Athena stands in this room from its first step, out of sight behind the painting, and is there
-    // with the four capabilities when the oracle's sanctuary gives way.
-    <section
-      id="oracle"
-      data-room="athena"
-      data-page-section
-      data-guide-side="left"
-      aria-labelledby="oracle-heading"
-      className="relative"
-    >
+    <section id="oracle" data-page-section aria-labelledby="oracle-heading" className="relative">
       <h2 id="oracle-heading" className="sr-only">
         {copy.title} {copy.titleHighlight}
       </h2>
@@ -329,42 +318,6 @@ export default function Oracle() {
           </ScrollStage>
         </div>
       )}
-
-      <FigureFallback figure="athena" side="left" />
-      <FigureCaption figure="athena" />
-      <div className="room-curtain mx-auto max-w-[90rem] px-5 pb-[14vh] md:px-10 md:pb-[18vh] md:pt-[16vh]">
-        <div className="md:ml-[46%] md:w-[50%]">
-          <p className="lit-dim max-w-[52ch] text-[1.0625rem] leading-[1.7]">{copy.listLead}</p>
-          <ol className="mt-8">
-            {copy.capabilities.map((capability) => {
-              const work = works[capability.project];
-              return (
-                <li key={capability.name} className="border-t hairline py-9">
-                  <h3 className="lit text-[1.375rem] font-[460] leading-tight">{capability.name}</h3>
-                  <p className="lit-dim mt-3 max-w-[60ch] text-[1rem] leading-[1.75]">{capability.description}</p>
-                  <p className="mt-4 text-[0.75rem] font-medium uppercase tracking-[0.14em] text-tone-accent">
-                    {work.tags.join(" · ")}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => goToWork(capability.project, !reduced)}
-                    className="group mt-5 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-left text-[0.875rem]"
-                  >
-                    <span className="text-tone-mute">{copy.runningIn}</span>
-                    <span className="text-tone underline decoration-tone-line underline-offset-4 transition-colors duration-300 group-hover:text-tone-accent group-hover:decoration-tone-accent">
-                      {work.title}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-tone-accent">
-                      · {copy.seeWork}
-                      <ArrowIcon className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-      </div>
     </section>
   );
 }

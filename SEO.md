@@ -1,35 +1,37 @@
 # Guía SEO — David Arcos Portfolio
 
-## Cambios implementados en el código
+## Lo que ya hace el código
 
-- **sitemap.xml** — `/sitemap.xml` para que Google indexe tu sitio
-- **robots.txt** — `/robots.txt` que permite el rastreo y apunta al sitemap
-- **Metadata** — Keywords "david-arcos", "David Arcos", variaciones del nombre
-- **Schema.org** — `alternateName` con "david-arcos" y "davidarcos" para rich results
-- **Open Graph & Twitter** — Ya configurados para compartir en redes
+- **Dos idiomas con su propia dirección**: `/` en español y `/en` en inglés. Cada página tiene su título,
+  descripción, canonical y tarjetas para redes, y las dos se anuncian entre sí con `hreflang`
+  (`es`, `en` y `x-default` → `/`). El botón ES / EN cambia el texto al instante y actualiza la dirección.
+- **sitemap.xml** con las dos direcciones y sus alternativas; **robots.txt** permite el rastreo y apunta al sitemap.
+- **Datos estructurados** (Schema.org): `Person` (puesto, ciudad, idiomas, perfiles, el stack que muestran
+  tus repositorios) y `WebSite`.
+- **Open Graph y Twitter** con `/og-image.jpg` (1200×630).
+- **Un solo `h1`** (tu nombre) y un `h2` por sala; los letreros que se repiten dentro de las pinturas no son encabezados.
+- **Rendimiento**: el nombre del hero entra con una animación CSS (se pinta sin esperar al JavaScript); el 3D de
+  las figuras se carga cuando el visitante empieza a moverse y el de las monedas cuando su bandeja se acerca; los
+  teléfonos nunca descargan una pintura de más de 2560 px.
 
-## Pasos adicionales para mejorar el posicionamiento
+## Lo que te toca hacer a ti
 
 ### 1. Google Search Console (prioritario)
 1. Entra a [search.google.com/search-console](https://search.google.com/search-console)
-2. Añade la propiedad con tu dominio: `https://davidarcosmelgarejo.com`
-3. Verifica con DNS (TXT) o con archivo HTML en `/public`
-4. Envía el sitemap: `https://davidarcosmelgarejo.com/sitemap.xml`
-5. Usa "Inspección de URLs" para solicitar indexación de la página principal
+2. Añade la propiedad de dominio `david-arcos.com` (cubre también `www`) y verifícala con el registro DNS (TXT) que te den
+3. Envía el sitemap: `https://www.david-arcos.com/sitemap.xml`
+4. En "Inspección de URLs", solicita la indexación de `/` y de `/en`
 
-### 2. Imagen OG para redes sociales
-Crea `/public/og-image.png` (1200×630 px) con tu nombre y título.  
-Si no existe, las redes usarán una imagen por defecto.
+### 2. Enlaces hacia el sitio
+- Pon el enlace del portafolio en tu perfil de [LinkedIn](https://www.linkedin.com/in/david-arcos-melgarejo-722008322/)
+  (sección de contacto y destacados) y en tu [GitHub](https://github.com/DavidRT12RT) (bio y sitio web)
+- Si publicas artículos o proyectos, enlaza al portafolio; en inglés, enlaza a `/en`
 
-### 3. Backlinks
-- Añade el enlace del portfolio en tu perfil de [LinkedIn](https://www.linkedin.com/in/david-arcos-melgarejo-722008322/)
-- Añade el enlace en tu perfil de [GitHub](https://github.com/DavidRT12RT) (bio y sitio web)
-- Si tienes artículos, posts o proyectos públicos, enlaza al portfolio
+### 3. Consistencia
+- La dirección oficial es `https://www.david-arcos.com`. En Vercel → Settings → Domains, cambia la redirección de
+  `david-arcos.com` a `www` de 307 (temporal) a 308 (permanente)
+- Mantén el nombre "David Arcos Melgarejo" igual en títulos, LinkedIn y GitHub
+- Si agregas páginas, añádelas a `app/sitemap.ts` con su versión en el otro idioma
 
-### 4. Contenido y consistencia
-- Mantén el nombre "David Arcos Melgarejo" visible en títulos y meta
-- Si tienes blog o más páginas, añádelas al sitemap
-
-### 5. Tiempo de indexación
-Google puede tardar días o semanas en indexar sitios nuevos.  
-Tras enviar el sitemap en Search Console, la indexación suele acelerarse.
+### 4. Tiempo de indexación
+Google puede tardar días o semanas en indexar o reindexar; tras enviar el sitemap suele acelerarse.

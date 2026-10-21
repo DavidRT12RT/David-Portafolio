@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
+import { SITE_URL } from "@/app/lib/seo";
 
 // Commissioner, by the Greek type designer Kostas Bartsokas: plain for reading, flared for room signage.
 const commissioner = Commissioner({
@@ -23,13 +24,12 @@ const cormorant = Cormorant_SC({
   display: "swap",
 });
 
+// Shared by both languages; each page adds its own title, description, canonical address and cards.
 export const metadata: Metadata = {
   title: {
     default: "David Arcos Melgarejo — Full Stack Developer & AI Engineer",
     template: "%s | David Arcos Melgarejo",
   },
-  description:
-    "David Arcos Melgarejo — Full Stack Developer & AI Engineer. Especializado en agentes de IA, arquitecturas multi-agente, React, React Native, AWS, Firebase. Creador de sistemas inteligentes con OpenAI Agents SDK, RAG y YOLO. Portfolio y proyectos en Monterrey, México.",
   keywords: [
     "David Arcos",
     "David Arcos Melgarejo",
@@ -39,14 +39,17 @@ export const metadata: Metadata = {
     "AI Engineer",
     "React Developer",
     "React Native",
+    "Python",
+    "FastAPI",
     "OpenAI Agents SDK",
     "Multi-Agent AI",
     "RAG",
+    "MCP",
     "YOLO",
     "Computer Vision",
     "AWS",
     "Firebase",
-    "NestJS",
+    "Google Cloud",
     "Next.js",
     "TypeScript",
     "Machine Learning",
@@ -58,42 +61,12 @@ export const metadata: Metadata = {
     "Kapli",
     "Solomon AI",
   ],
-  authors: [
-    { name: "David Arcos Melgarejo", url: "https://davidarcosmelgarejo.com" },
-  ],
+  authors: [{ name: "David Arcos Melgarejo", url: SITE_URL }],
   creator: "David Arcos Melgarejo",
   publisher: "David Arcos Melgarejo",
   applicationName: "David Arcos Portfolio",
-  metadataBase: new URL("https://davidarcosmelgarejo.com"),
+  metadataBase: new URL(SITE_URL),
   referrer: "origin-when-cross-origin",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "es_MX",
-    alternateLocale: "en_US",
-    url: "https://davidarcosmelgarejo.com",
-    siteName: "David Arcos Melgarejo — Portfolio",
-    title: "David Arcos Melgarejo — Full Stack Developer & AI Engineer",
-    description:
-      "Full Stack Developer & AI Engineer. Construyo sistemas inteligentes con agentes de IA, arquitecturas multi-agente, React, AWS y más.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "David Arcos Melgarejo — Full Stack Developer & AI Engineer",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "David Arcos Melgarejo — Full Stack Developer & AI Engineer",
-    description:
-      "Construyo sistemas inteligentes con agentes de IA, arquitecturas multi-agente, React, AWS y más.",
-    images: ["/og-image.jpg"],
-  },
   robots: {
     index: true,
     follow: true,
@@ -109,40 +82,58 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://davidarcosmelgarejo.com/#person",
-  name: "David Arcos Melgarejo",
-  alternateName: ["David Arcos", "david-arcos", "davidarcos"],
-  jobTitle: "Full Stack Developer & AI Engineer",
-  url: "https://davidarcosmelgarejo.com",
-  image: "https://davidarcosmelgarejo.com/og-image.jpg",
-  email: "davidarcosm@hotmail.com",
-  sameAs: [
-    "https://github.com/DavidRT12RT",
-    "https://www.linkedin.com/in/david-arcos-melgarejo-722008322/",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: "David Arcos Melgarejo",
+      alternateName: ["David Arcos", "david-arcos", "davidarcos"],
+      jobTitle: "Full Stack Developer & AI Engineer",
+      url: SITE_URL,
+      image: `${SITE_URL}/og-image.jpg`,
+      email: "davidarcosm@hotmail.com",
+      address: { "@type": "PostalAddress", addressLocality: "Monterrey", addressCountry: "MX" },
+      knowsLanguage: ["es", "en"],
+      sameAs: ["https://github.com/DavidRT12RT", "https://www.linkedin.com/in/david-arcos-melgarejo-722008322/"],
+      // The stack as the owner's repositories show it.
+      knowsAbout: [
+        "Python",
+        "FastAPI",
+        "TypeScript",
+        "React",
+        "React Native",
+        "Next.js",
+        "Node.js",
+        "Laravel",
+        "OpenAI Agents SDK",
+        "Multi-Agent AI",
+        "RAG",
+        "Model Context Protocol",
+        "YOLO",
+        "Computer Vision",
+        "PyTorch",
+        "AWS",
+        "Firebase",
+        "Google Cloud",
+        "Docker",
+        "PostgreSQL",
+      ],
+      worksFor: { "@type": "Organization", name: "ScaleFlow Tech" },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "David Arcos Melgarejo — Portfolio",
+      inLanguage: ["es", "en"],
+      publisher: { "@id": `${SITE_URL}/#person` },
+    },
   ],
-  knowsAbout: [
-    "React",
-    "React Native",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "NestJS",
-    "Laravel",
-    "AWS",
-    "Firebase",
-    "OpenAI Agents SDK",
-    "Multi-Agent AI",
-    "RAG",
-    "YOLO",
-    "Computer Vision",
-    "Machine Learning",
-  ],
-  worksFor: {
-    "@type": "Organization",
-    name: "ScaleFlow Tech",
-  },
 };
+
+// Before the first paint: scripts are on, and the English address reads as English to assistive
+// technology (the markup is shared by both languages and says Spanish).
+const BOOT = "var d=document.documentElement;d.classList.replace('no-js','js');if(/^\\/en(\\/|$)/.test(location.pathname))d.lang='en';";
 
 export default function RootLayout({
   children,
@@ -152,11 +143,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`no-js ${commissioner.variable} ${cormorant.variable}`} suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.replace('no-js','js')",
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: BOOT }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

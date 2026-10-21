@@ -1,9 +1,9 @@
 // Shared state between the DOM rooms and the WebGL gallery. Plain mutable data read every frame,
 // so scroll and pointer never trigger React renders.
 
-export type FigureId = "plato" | "homer" | "discobolus" | "athena" | "apollo";
-/** Every room the sun reaches: the painting's entrance, the five figures, the treasury and the works under their portico. */
-export type RoomId = FigureId | "hero" | "treasury" | "works";
+export type FigureId = "plato" | "homer" | "discobolus" | "apollo";
+/** Every room the sun reaches: the painting's entrance, the five figures and the works under their portico. */
+export type RoomId = FigureId | "hero" | "works";
 
 export interface RoomState {
   /** 0 while the room is still in haze, 1 when the visitor stands in it. */
@@ -16,21 +16,11 @@ export interface RoomState {
   viewport: number;
 }
 
-export interface ScreenAnchor {
-  x: number;
-  y: number;
-  visible: boolean;
-}
-
 export const gallery = {
   pointer: { x: 0, y: 0, active: false },
   rooms: {} as Partial<Record<RoomId, RoomState>>,
-  /** Projected screen positions (px) of named points on figures, for leader lines. */
-  anchors: {} as Record<string, ScreenAnchor>,
   /** Set by the canvas so DOM events can request a frame. */
   invalidate: () => {},
-  /** Listeners notified after anchors are re-projected. */
-  anchorListeners: new Set<() => void>(),
   reducedMotion: false,
 };
 

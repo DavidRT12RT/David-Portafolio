@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { SectionScrollspy, type SectionMeta } from "@/components/spaceui/section-scrollspy";
 import { useLanguage } from "@/app/context/LanguageContext";
 
-type FigureKey = "plato" | "homer" | "discobolus" | "athena" | "apollo";
+type FigureKey = "plato" | "homer" | "discobolus" | "apollo";
 type RoomKey = "about" | "experience" | "skills" | "projects" | "method" | "oracle" | "giants" | "contact";
 
-const FIGURE_KEYS: FigureKey[] = ["plato", "homer", "discobolus", "athena", "apollo"];
+const FIGURE_KEYS: FigureKey[] = ["plato", "homer", "discobolus", "apollo"];
 
 /** The guide's label for the room the visitor stands in: the room's Greek name, then its figure. */
 function GuideCard({ section }: { section: SectionMeta }) {

@@ -25,7 +25,7 @@ A full-stack engineer who builds production AI systems, not demos: multi-agent a
 
 - Single-page site with anchor navigation: `#about`, `#experience`, `#skills`, `#projects`, `#contact`.
 - Bilingual ES/EN with browser-language detection and a persisted toggle (`app/context/LanguageContext.tsx`); Spanish is the default.
-- Deployed on Vercel with Analytics and Speed Insights; canonical domain `https://davidarcosmelgarejo.com`; SEO metadata, sitemap, robots and Person JSON-LD live in `app/layout.tsx`, `app/sitemap.ts`, `app/robots.ts`.
+- Deployed on Vercel with Analytics and Speed Insights; canonical domain `https://www.david-arcos.com`; SEO metadata, sitemap, robots and Person JSON-LD live in `app/layout.tsx`, `app/sitemap.ts`, `app/robots.ts`.
 
 ## Capabilities and Constraints
 
@@ -35,6 +35,7 @@ A full-stack engineer who builds production AI systems, not demos: multi-agent a
 - 3D figures come from Statens Museum for Kunst (SMK) scans of its Royal Cast Collection, released under the Public Domain Mark 1.0.
 - The paintings are public domain and always credited on screen: Thomas Cole's *The Course of Empire: The Consummation of Empire* (1836, New-York Historical Society) in the first room, Peter Paul Rubens' *The Battle of the Amazons* (c. 1618, Alte Pinakothek), Francisco Bayeu's *Olympus: The Fall of the Giants* (1764, Museo del Prado), Camillo Miola's *The Oracle* (1880, The J. Paul Getty Museum), Frederic Edwin Church's *The Parthenon* (1871, The Metropolitan Museum of Art, CC0) and Jacob Jordaens' *The Fall of the Giants* (1636–1638, Museo del Prado), the last animated from figures cut out of it.
 - Technology logos are Simple Icons path data (CC0 1.0, simpleicons.org), struck as coins at runtime; each mark stays its owner's trademark. No on-screen credit line (owner's choice).
+- The stack shown in ΤΕΧΝΗ comes from the owner's own repositories (audited 2026-10-20): a technology appears only where the code uses it, and the works linked from each coin are the projects whose code uses it.
 
 ## Brand Commitments
 

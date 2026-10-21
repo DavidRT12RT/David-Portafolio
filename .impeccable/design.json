@@ -510,7 +510,7 @@
       ],
       "provenance": "Every shipping raster carries provenance written by `impeccable embed-prompt` (origin, licence, processing, use): a <file>.json sidecar beside each WebP in public/paintings (including depth maps, SAM cut-out layers and LaMa-filled plates), public/statues and public/projects/plates; an impeccable:prompt metadata entry embedded in PNG and JPEG files (project screenshots, og-image.jpg).",
       "roomSigns": "One capitalised Ancient Greek noun per room with transliteration and gloss in both languages: ΛΟΓΟΣ, ΟΔΥΣΣΕΙΑ, ΜΕΘΟΔΟΣ, ΤΕΧΝΗ, ΜΑΝΤΕΙΟΝ, ΕΡΓΑ, ΓΙΓΑΝΤΟΜΑΧΙΑ, ΧΑΙΡΕ; lang=\"el\", above the local title in one heading; size capped by letter count (--glyphs) to fit phones.",
-      "roomOrder": "Hero (Cole) -> ΛΟΓΟΣ (Plato) -> ΟΔΥΣΣΕΙΑ (Rubens, Homer) -> ΜΕΘΟΔΟΣ (Bayeu) -> ΤΕΧΝΗ (discus thrower) -> ΜΑΝΤΕΙΟΝ (Miola, Athena) -> ΕΡΓΑ (Church's Parthenon, colonnade) -> ΓΙΓΑΝΤΟΜΑΧΙΑ (Jordaens, animated) -> ΧΑΙΡΕ (Apollo); paintings and figures alternate."
+      "roomOrder": "Hero (Cole) -> ΛΟΓΟΣ (Plato) -> ΟΔΥΣΣΕΙΑ (Rubens, Homer) -> ΜΕΘΟΔΟΣ (Bayeu) -> ΤΕΧΝΗ (discus thrower) -> ΜΑΝΤΕΙΟΝ (Miola) -> ΕΡΓΑ (Church's Parthenon, colonnade) -> ΓΙΓΑΝΤΟΜΑΧΙΑ (Jordaens, animated) -> ΧΑΙΡΕ (Apollo); paintings and figures alternate."
     }
   },
   "components": [

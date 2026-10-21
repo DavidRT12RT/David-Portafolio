@@ -22,8 +22,6 @@ export interface FigureConfig {
   plinth?: { w: number; d: number };
   /** Ground at the figure's base that catches its shadow (only the shadow shows). */
   floor?: boolean;
-  /** Named points in the figure's normalized space (height 1, base at 0) for leader lines. */
-  anchors?: Record<string, [number, number, number]>;
 }
 
 export const FIGURES: FigureConfig[] = [
@@ -53,24 +51,6 @@ export const FIGURES: FigureConfig[] = [
     yaw: [-0.7, 0.7],
     keySide: 1,
     floor: true,
-    // Measured on the scan's visible surface (normalized: height 1, base at 0, front +Z).
-    anchors: {
-      head: [0.25, 0.765, 0.11],
-      hand: [-0.274, 0.939, 0.143],
-      torso: [0.055, 0.65, 0.03],
-      base: [-0.014, 0.0435, 0.12],
-    },
-  },
-  {
-    // Athena, goddess of wisdom, keeps the room where the AI is shown at work.
-    id: "athena",
-    model: "/models/athena.glb",
-    desktop: { x: -0.48, y: -0.12, h: 0.74 },
-    portrait: { x: 0, y: 0.45, h: 0.34 },
-    yaw: [0.42, -0.16],
-    keySide: -1,
-    relief: 1.4,
-    plinth: { w: 0.62, d: 0.56 },
   },
   {
     id: "apollo",
