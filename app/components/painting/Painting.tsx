@@ -9,6 +9,12 @@ import { PaintingRenderer, type LayerMotion, type PaintingView, type Plume } fro
 
 /** The margin the camera keeps around the screen so the parallax never runs out of painting. */
 const OVERSCAN = 1.06;
+/**
+ * How much of that margin a pull-back may spend. Between two distant details the camera pulls back,
+ * and on tall screens, where it holds them less close, that would pass the whole painting and stretch
+ * its edge across the screen; instead it eases to a stop just short of it, the parallax still in reserve.
+ */
+const PULLBACK = 0.03;
 /** The page's ground, #ebe5dd, as sRGB 0..1: the haze a painting dissolves into. */
 const GROUND: [number, number, number] = [235 / 255, 229 / 255, 221 / 255];
 /** Phones decode at most this much painting; the GPU memory goes to the rest of the gallery. */
@@ -57,6 +63,9 @@ export interface PaintingFrame {
 }
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+
+/** A shot's zoom, eased so the painting always covers the screen (see PULLBACK). */
+const covering = (zoom: number) => (zoom >= 1 ? zoom : 1 - PULLBACK + PULLBACK * Math.exp((zoom - 1) / PULLBACK));
 
 /** The camera's window on the painting for a shot: the visible span and its top left, 0..1 of the painting. */
 function windowOf(shot: Shot, viewAspect: number, imageAspect: number) {
@@ -164,7 +173,8 @@ export default function Painting({
       last = now;
       const t = (now - start) / 1000;
       const { width, height } = size();
-      const shot = directRef.current(progress.get(), width, height, reduced ? 0 : t);
+      const directed = directRef.current(progress.get(), width, height, reduced ? 0 : t);
+      const shot = directed.zoom < 1 ? { ...directed, zoom: covering(directed.zoom) } : directed;
       placeImage(shot, width, height);
       // Once the haze is complete the painting gives way entirely, so whatever stands behind it in the
       // gallery canvas (the next room's figure) is never cut by its edge. Without WebGL the image

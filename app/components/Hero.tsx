@@ -162,7 +162,7 @@ function HeroStage({ progress, reduced }: { progress: MotionValue<number>; reduc
       <motion.div
         aria-hidden="true"
         style={reduced ? undefined : { opacity: scrimOpacity }}
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[78%] bg-[linear-gradient(to_top,rgba(28,16,9,0.9)_0%,rgba(28,16,9,0.66)_56%,rgba(28,16,9,0)_100%)] md:h-[52%] md:bg-[linear-gradient(to_top,rgba(28,16,9,0.86)_0%,rgba(28,16,9,0.5)_42%,rgba(28,16,9,0)_100%)]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] bg-[linear-gradient(to_top,rgba(28,16,9,0.9)_0%,rgba(28,16,9,0.72)_52%,rgba(28,16,9,0)_100%)] md:h-[52%] md:bg-[linear-gradient(to_top,rgba(28,16,9,0.86)_0%,rgba(28,16,9,0.5)_42%,rgba(28,16,9,0)_100%)]"
       />
 
       <motion.div
@@ -212,7 +212,9 @@ function HeroStage({ progress, reduced }: { progress: MotionValue<number>; reduc
             <p className="max-w-[44ch] text-[clamp(1.2rem,1.7vw,1.6rem)] font-[380] leading-[1.25] text-tone [font-variation-settings:'FLAR'_70]">
               {t.hero.title1} {t.hero.title2}
             </p>
-            <p className="mt-3 max-w-[60ch] text-[0.9375rem] leading-[1.6] text-tone-soft max-md:text-[0.875rem]">
+            {/* A phone keeps the painting for the name, the line and the doors: the paragraph waits for
+                the About room, which says it at length, and stays for screen readers. */}
+            <p className="mt-3 max-w-[60ch] text-[0.9375rem] leading-[1.6] text-tone-soft max-md:sr-only">
               {t.hero.description}
             </p>
 

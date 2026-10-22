@@ -20,9 +20,9 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const DETAILS: { point: [number, number]; zoom: number; tall: number }[] = [
   { point: [0.42, 0.8], zoom: 2.1, tall: 1.2 },
   { point: [0.646, 0.66], zoom: 2.3, tall: 1.3 },
-  { point: [0.325, 0.34], zoom: 2.4, tall: 1.3 },
+  { point: [0.325, 0.34], zoom: 2.4, tall: 1.5 },
   { point: [0.43, 0.5], zoom: 2, tall: 1.2 },
-  { point: [0.69, 0.88], zoom: 2, tall: 1.2 },
+  { point: [0.69, 0.88], zoom: 2, tall: 1.6 },
   { point: [0.5, 0.5], zoom: 1, tall: 1 },
 ];
 /** The establishing view, then one shot per step. */
